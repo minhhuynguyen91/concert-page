@@ -1,0 +1,19 @@
+{
+  "name": "concert-page",
+  "version": "1.0.0",
+  "description": "This is for concert page and ticket",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/minhhuynguyen91/concert-page.git"
+  },
+  "author": "Minh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/minhhuynguyen91/concert-page/issues"
+  },
+  "homepage": "https://github.com/minhhuynguyen91/concert-page#readme"
+}
