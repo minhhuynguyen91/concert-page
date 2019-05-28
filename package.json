@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/minhhuynguyen91/concert-page/issues"
   },
-  "homepage": "https://github.com/minhhuynguyen91/concert-page#readme"
+  "homepage": "https://github.com/minhhuynguyen91/concert-page#readme",
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "jquery": "^3.4.1",
+    "popper.js": "^1.15.0",
+    "simplemde": "^1.11.2"
+  }
 }
