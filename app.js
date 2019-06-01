@@ -1,6 +1,6 @@
 const express = require('express') 
 const app = express();
-const routes = require('./web/router');
+const routes = require('./web/router/index');
 const bodyParser = require('body-parser');
 var path = require('path');
 var methodOverride = require('method-override');

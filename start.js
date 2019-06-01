@@ -13,7 +13,7 @@ mongoose.connection
   });
 
 
-require('./models/article');
+require('./models/concert');
 
 
 const app = require('./app');

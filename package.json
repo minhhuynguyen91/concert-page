@@ -4,7 +4,8 @@
   "description": "This is for concert page and ticket",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "nodemon ./start.js"
   },
   "repository": {
     "type": "git",
@@ -22,7 +23,9 @@
     "express": "^4.17.1",
     "express-validator": "^5.3.1",
     "jquery": "^3.4.1",
+    "method-override": "^3.0.0",
     "mongoose": "^5.5.12",
+    "nodemon": "^1.19.1",
     "popper.js": "^1.15.0",
     "pug": "^2.0.3",
     "request": "^2.88.0",
