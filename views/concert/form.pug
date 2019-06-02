@@ -1,0 +1,27 @@
+form(action=action method=method)
+  .form-group
+    label(for="title") Title:
+    input.form-control(
+      type="text"
+      id="title"
+      name="title"
+      value=concert.title
+    ) 
+    
+  .form-group
+    label(for="content") Content:
+    textarea.form-control(
+      type="text"
+      id="content"
+      name="content"
+    ) 
+    
+  button.btn.btn-primary(type="submit" value="Submit") Submit
+
+
+script(type="text/javascript").
+  var simpleMDE = new SimpleMDE({
+    element: $('#content')[0],
+    initialValue: "#{concert.content}"
+  });
+

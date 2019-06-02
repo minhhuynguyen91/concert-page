@@ -3,5 +3,5 @@ exports.index = function(req, res) {
 };
 
 exports.contact = function(req, res) {
-  res.render('homes/contact', {header: 'contact'});
+  res.render('homes/contact');
 };
