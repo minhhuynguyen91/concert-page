@@ -1,5 +1,7 @@
 nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
-  a.navbar-brand(href='#') Logo
+  a.navbar-brand(href='/')
+    img(src='/style/image/logo.jpg', width='50', height='50', alt='Logo')
+
   button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
     span.navbar-toggler-icon
   #navbarSupportedContent.collapse.navbar-collapse
@@ -7,9 +9,10 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
       li.nav-item.active
         a.nav-link(href='/')
           | Home 
-          span.sr-only (current)
       li.nav-item
-        a.nav-link(href='/contact') Contact
+        a.nav-link(href='/contact') 
+          | Contact
+          spam.sr-only
       li.nav-item
         a.nav-link(href='/about') About Me
       li.nav-item
