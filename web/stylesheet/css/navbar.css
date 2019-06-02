@@ -1,0 +1,11 @@
+.navbar-nav > li {
+  padding-left:2.5em;
+  padding-right:2.5em;
+}
+
+.navbar{
+  margin-bottom: 0;
+}
+
+.footer {  
+  padding-top: 10em;

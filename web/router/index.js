@@ -9,6 +9,8 @@ var concertController = require('./concert');
 routes.route('/')
   .get(homeController.index);
 
+routes.route('/contact')
+  .get(homeController.contact);
 
 routes.route('/concerts/new')
   .get(concertController.new);
