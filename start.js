@@ -1,12 +1,12 @@
-require('dotenv').config();
+const config = require('./config/web/server');
 const mongoose = require('mongoose');
 
 
-mongoose.connect(process.env.DATABASE, { useNewUrlParser: true });
+mongoose.connect(config.DATABASE, { useNewUrlParser: true });
 mongoose.Promise = global.Promise;
 mongoose.connection
   .on('connected', () => {
-    console.log(`Mongoose connection open on ${process.env.DATABASE}`);
+    console.log(`Mongoose connection open on ${config.DATABASE}`);
   })
   .on('error', (err) => {
     console.log(`Connection error: ${err.message}`);
