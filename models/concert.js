@@ -19,6 +19,27 @@ const concertSchema = new mongoose.Schema({
     default: 0
   },
 
+  start_date: {
+    type: Date,
+    default: Date.now
+  },
+
+  start_time: {
+    type: Date,
+    default: Date.now
+  },
+
+  end_date: {
+    type: Date,
+    default: Date.now
+  },
+
+  end_time: {
+    type: Date,
+    default: Date.now
+  },
+
+
   created_date: {
     type: Date,
     default: Date.now
