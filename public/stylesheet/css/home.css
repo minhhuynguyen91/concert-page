@@ -1,0 +1,21 @@
+.image-banner {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+.related-event {
+  padding-top: 1em;
+
+}
+
+.related-event > h3 {
+  color: #828282;
+}
+
+.feature-concert {
+  padding-top: 3em;
+}
+
+.feature-text {
+  text-align: center;
+}

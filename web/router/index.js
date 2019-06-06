@@ -12,7 +12,7 @@ routes.route('/')
 routes.route('/contact')
   .get(homeController.contact);
 
-routes.route('/concerts/new')
+routes.route('/concert/new')
   .get(concertController.new);
 
 
@@ -20,13 +20,12 @@ routes.route('/concerts/:id/edit')
   .get(concertController.edit);
 
 routes.route('/concerts')
-  .get(concertController.index);
+  .get(concertController.index)
+  .post(concertController.post);
 
 routes.route('/concerts/:id') 
   .get(concertController.id)
   .put(concertController.put);
 
-routes.route('/concerts')
-  .post(concertController.post);
-
+  
 module.exports = routes;

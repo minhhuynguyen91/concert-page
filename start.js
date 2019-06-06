@@ -14,6 +14,7 @@ mongoose.connection
 
 
 require('./models/concert');
+require('./models/referal');
 
 
 const app = require('./app');
