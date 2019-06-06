@@ -14,6 +14,13 @@ const concertSchema = new mongoose.Schema({
     trim: true,
     default: null
   },
+
+  note: {
+    type: String,
+    trim: true,
+    default: null
+  },
+
   tickets: {
     type: Number,
     default: 0
