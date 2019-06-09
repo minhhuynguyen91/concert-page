@@ -32,8 +32,8 @@ const concertSchema = new mongoose.Schema({
   },
 
   start_time: {
-    type: Date,
-    default: Date.now
+    type: String,
+    default: null
   },
 
   end_date: {
@@ -42,8 +42,8 @@ const concertSchema = new mongoose.Schema({
   },
 
   end_time: {
-    type: Date,
-    default: Date.now
+    type: String,
+    default: null
   },
 
 
