@@ -16,8 +16,21 @@
   padding-top: 3em;
 }
 
-
-
 .feature-text {
   text-align: center;
+}
+
+.card-cover {
+  width: 100%;
+  padding-top: 1em;
+  border-bottom: 1px solid #eee;
+}
+
+.cover-image {
+  height: 100%;
+  border-radius: 2px 2px 0 0;
+}
+
+.w-100 {
+  width: 100%;
 }

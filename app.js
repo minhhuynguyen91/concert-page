@@ -27,4 +27,5 @@ app.use('/concerts', routes);
 app.use('/concerts/:id', routes);
 app.use('/concerts/:id/edit', routes);
 
+app.locals.moment = require('moment');
 module.exports = app;
