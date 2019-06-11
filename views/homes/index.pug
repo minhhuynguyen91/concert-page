@@ -26,4 +26,16 @@ block content
     .feature-concert
       .jumbotron
         h1.feature-text Vở diễn sắp trình chiếu
-  
+
+    .row
+      each concert in concerts
+        .col-sm-12.col-lg-6
+          .card
+            .card-cover
+              img.cover-image.w-100(src="https://cdn.tuoitre.vn/thumb_w/586/2019/5/14/kich-ve-bac-ho-2-155783167817456088070.jpg")
+            .card-body
+              .card-title= concert.title
+              .card-text(style="text-align:left;") 
+                | Ngày khởi chiếu: #{moment(concert.start_date).format('DD/MM/YYYY')} - #{moment(concert.end_date).format('DD/MM/YYYY')}
+              .card-text(style="text-align:left;")
+                | Giờ chiếu #{concert.start_time} - #{concert.end_time}
