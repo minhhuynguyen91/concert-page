@@ -25,7 +25,8 @@ routes.route('/concerts')
 
 routes.route('/concerts/:id') 
   .get(concertController.id)
-  .put(concertController.put);
+  .put(concertController.put)
+  .delete(concertController.delete);
 
   
 module.exports = routes;

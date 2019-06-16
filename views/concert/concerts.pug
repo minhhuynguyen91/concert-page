@@ -1,0 +1,24 @@
+extends ../layouts/layout
+
+block content
+  br
+  .container
+    .row
+      each concert in concerts
+        .col-sm-12.col-lg-6
+          .card
+            .card-cover
+              a(href="/concerts/" + concert._id)
+                img.cover-image.w-100(src="https://cdn.tuoitre.vn/thumb_w/586/2019/5/14/kich-ve-bac-ho-2-155783167817456088070.jpg")
+              .card-body
+                .card-title= concert.title
+                .card-text(style="text-align:left;") 
+                  | Ngày khởi chiếu: #{moment(concert.start_date).format('DD/MM/YYYY')} - #{moment(concert.end_date).format('DD/MM/YYYY')}
+                .card-text(style="text-align:left;")
+                  | Giờ chiếu #{concert.start_time} - #{concert.end_time}
+
+                .button-card
+                  a.btn.btn-primary(href="/concerts/" + concert._id + "/edit") Edit
+                .button-card
+                  form(action="/concerts/" + concert._id + "?_method=delete"  method="POST")
+                    button.btn.btn-danger(type="submit" value="Submit" onclick="return confirm('Are you sure to delete?')" ) Delete
