@@ -22,6 +22,7 @@ form(action=action method=method)
       type="text"
       id="img_link"
       name="img_link"
+      value=concert.img_link
     )
 
   .form-row
@@ -31,6 +32,7 @@ form(action=action method=method)
         type="text"
         id="note"
         name="note"
+        value=concert.note
       )
 
     .form-group.col-lg-6.col-md-12
@@ -38,7 +40,8 @@ form(action=action method=method)
       input.form-control(
         type="text"
         id="tickets"
-        name="note"
+        name="tickets"
+        value=concert.tickets
       )
 
   .form-row
@@ -50,6 +53,7 @@ form(action=action method=method)
           id="start_date"
           name="start_date"
           data-target='#startDatePicker'
+          value=moment(concert.start_date).format('DD/MM/YYYY')
         )
 
         .input-group-append(data-target='#startDatePicker', data-toggle='datetimepicker')
@@ -64,6 +68,7 @@ form(action=action method=method)
           id="end_date"
           name="end_date"
           data-target='#endDatePicker'
+          value=moment(concert.end_date).format('DD/MM/YYYY')
         )
 
         .input-group-append(data-target='#endDatePicker', data-toggle='datetimepicker')
@@ -81,6 +86,7 @@ form(action=action method=method)
           id="start_time"
           name="start_time"
           data-target="#startTimePicker"
+          value=concert.start_time
         ) 
 
         .input-group-append(data-target='#startTimePicker', data-toggle='datetimepicker')
@@ -97,6 +103,7 @@ form(action=action method=method)
           id="end_time"
           name="end_time"
           data-target="#endTimePicker"
+          value=concert.end_time
         )
 
         .input-group-append(data-target='#endTimePicker', data-toggle='datetimepicker')
@@ -110,7 +117,7 @@ form(action=action method=method)
 script(type="text/javascript").
   var simpleMDE = new SimpleMDE({
     element: $('#content')[0],
-    initialValue: "#{concert.content}"
+    initialValue: `#{concert.content}`
   });
 
   $(function () {

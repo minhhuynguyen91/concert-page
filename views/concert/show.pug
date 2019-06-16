@@ -1,0 +1,21 @@
+extends ../layouts/layout
+
+block content
+  .container
+    .row
+      .col-lg-12.col-sm-12
+        img.img-fluid.card-image-top.concert-photo(src="https://cdn.tuoitre.vn/thumb_w/586/2019/5/14/kich-ve-bac-ho-2-155783167817456088070.jpg" style="width:100%")
+
+      .col-lg-12.col-sm-12        
+        h2.concert-title= concert.title
+
+        .concert-time= moment(concert.start_date).format('DD/MM/YYYY') + '-' + moment(concert.end_date).format('DD/MM/YYYY') + ' (' + concert.start_time + '-' + concert.end_time  + ')'
+
+        .concert-ticket Total ticket: #{concert.tickets}
+
+        .concert-note Note: #{concert.note}
+
+      hr
+      
+      .col-lg-12.col-sm-12
+        .concert-content !{concert.content}

@@ -2,6 +2,7 @@ var mongo = require('mongodb');
 const mongoose = require('mongoose');
 
 const Concert = mongoose.model('Concert');
+const moment = require('moment');
 
 const { body, validationResult } = require('express-validator/check');
 
@@ -19,41 +20,21 @@ exports.index = function(req, res) {
 };
 
 exports.post = function (req, res) {
-    [
-    body('title')
-      .isLength({min: 1})
-      .withMessage('Please enter the title'),
 
-    body('content')
-      .isLength({min: 1})
-      .withMessage('Please enter the content'),
+  // const errors = validationResult(req);
+  //
+  console.log(req.body);
+  req.body.start_date = moment(req.body.start_date, 'DD/MM/YYYYY').toDate();
+  req.body.end_date = moment(req.body.end_date, 'DD/MM/YYYYY').toDate();
+  console.log(req.body);
 
-    body('img_link')
-      .isLength({min: 1})
-      .withMessage('Please enter the image link'),
-
-    body('Note')
-      .isLength({min: 1})
-      .withMessage('Please enter the image link')
-
-  ],
-  (req, res) => {
-    const errors = validationResult(req);
-    console.log(req.body);
-    if (errors.isEmpty()) {
-      const concert = new Concert(req.body);
-      concert.save()
-        .then(() => { res.redirect('/'); })
-        .catch(() => { res.send('Sorry, something went wrong!'); });
-
-    } else {
-      res.render('concert/new', {
-        title: 'Create concert',
-        errors: errors.array(),
-        data: req.body
-      });
-    }
-  }
+  const concert = new Concert(req.body);
+  concert.save()
+    .then(() => { res.redirect('/'); })
+    .catch((err) => {
+      console.log(err.stack);
+      res.send('Sorry, something went wrong!'); 
+    });
 };
 
 
@@ -79,12 +60,29 @@ exports.put = function (req, res) {
   const objectId = new mongo.ObjectId(req.params.id);
   console.log(req.body);
 
-  Concert.findOneAndUpdate({'_id' : objectId}, { 'title' :req.body.title, 'content':req.body.content}, {new: true})
+  Concert.findOneAndUpdate({'_id' : objectId}, 
+  { 
+    'title' :req.body.title, 
+    'content':req.body.content,
+    'img_link': req.body.img_link,
+    'note' : req.body.note,
+    'tickets' : req.body.tickets,
+    'start_date' : req.body.start_date,
+    'end_date' : req.body.end_date,
+    'start_time' : req.body.start_time,
+    'end_time' : req.body.end_time,
+    'updated_date' : Date.now()
+  }, {new: true})
 
     .then((concert) => {
-      res.render('concert/concert', {concert});
+      var showdown = require('showdown'),
+      converter = new showdown.Converter();
+      concert.content = converter.makeHtml(concert.content);
+
+      res.render('concert/show', {concert});
     })
-    .catch(() => {
+    .catch((err) => {
+      console.log(err.stack);
       res.send('something went wrong');
     });
 
@@ -98,10 +96,17 @@ exports.id = function (req, res) {
   Concert.findOne( { '_id': objectId} )
     .then((concert) => {
       concert.content = converter.makeHtml(concert.content);
-      res.render('concert/concert', {concert});
+      res.render('concert/show', {concert});
     })
 
     .catch(() => {
       res.send('something went wrong');
     });
+};
+
+exports.delete = function(req, res) {
+  const objectId = new mongo.ObjectId(req.params.id);
+  Concert.deleteOne( { '_id' : objectId } )
+    .then(() => { res.redirect('concert/concerts') })
+    .catch((err) => {console.log(err.stack)});
 };

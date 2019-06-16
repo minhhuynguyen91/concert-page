@@ -1,0 +1,16 @@
+.concert-title {
+  padding-top: 1em;
+  text-transform: capitalize;
+}
+
+.concert-time {
+  font-weight: bold;
+}
+
+.concert-content {
+  padding-top: 1em;
+}
+
+.button-card {
+  padding-top: 0.5em;
+}
