@@ -15,18 +15,15 @@ exports.index = function(req, res) {
 
     .catch(() => {
       res.send('something went wrong');
-    }) 
+    });
 
 };
 
 exports.post = function (req, res) {
 
   // const errors = validationResult(req);
-  //
-  console.log(req.body);
-  req.body.start_date = moment(req.body.start_date, 'DD/MM/YYYYY').toDate();
-  req.body.end_date = moment(req.body.end_date, 'DD/MM/YYYYY').toDate();
-  console.log(req.body);
+  req.body.start_date = moment(req.body.start_date, 'DD/MM/YYYY').toDate();
+  req.body.end_date = moment(req.body.end_date, 'DD/MM/YYYY').toDate();
 
   const concert = new Concert(req.body);
   concert.save()
@@ -53,12 +50,11 @@ exports.edit = function(req, res) {
 
     .catch(() => {
       res.send('something went wrong');
-    })
+    });
 };
 
 exports.put = function (req, res) {
   const objectId = new mongo.ObjectId(req.params.id);
-  console.log(req.body);
 
   Concert.findOneAndUpdate({'_id' : objectId}, 
   { 
@@ -67,8 +63,8 @@ exports.put = function (req, res) {
     'img_link': req.body.img_link,
     'note' : req.body.note,
     'tickets' : req.body.tickets,
-    'start_date' : req.body.start_date,
-    'end_date' : req.body.end_date,
+    'start_date' : moment(req.body.start_date, 'DD/MM/YYYY').toDate(),
+    'end_date' : moment(req.body.end_date, 'DD/MM/YYYY').toDate(),
     'start_time' : req.body.start_time,
     'end_time' : req.body.end_time,
     'updated_date' : Date.now()
@@ -107,6 +103,6 @@ exports.id = function (req, res) {
 exports.delete = function(req, res) {
   const objectId = new mongo.ObjectId(req.params.id);
   Concert.deleteOne( { '_id' : objectId } )
-    .then(() => { res.redirect('concert/concerts') })
-    .catch((err) => {console.log(err.stack)});
+    .then(() => { res.redirect('concert/concerts'); })
+    .catch((err) => {console.log(err.stack); });
 };
