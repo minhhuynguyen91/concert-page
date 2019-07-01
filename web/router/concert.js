@@ -106,6 +106,6 @@ exports.id = function (req, res) {
 exports.delete = function(req, res) {
   const objectId = new mongo.ObjectId(req.params.id);
   Concert.deleteOne( { '_id' : objectId } )
-    .then(() => { res.redirect('concert/concerts'); })
+    .then(() => { res.redirect('/'); })
     .catch((err) => {console.log(err.stack); });
 };
