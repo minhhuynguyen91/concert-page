@@ -5,9 +5,14 @@ const bodyParser = require('body-parser');
 var path = require('path');
 var methodOverride = require('method-override');
 
+var cookieParser = require('cookie-parser');
+const session = require('express-session');
+
 
 app.set('views', path.join(__dirname + '/views'));
 app.set('view engine', 'pug')
+
+// Js frontend
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist'));
 app.use('/popper', express.static(__dirname + '/node_modules/popper.js/dist/umd'));
 app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist'));
@@ -22,10 +27,25 @@ app.use(methodOverride('_method'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/', routes);
-app.use('/concerts/new', routes);
 app.use('/concerts', routes);
-app.use('/concerts/:id', routes);
-app.use('/concerts/:id/edit', routes);
+// app.use('/concerts/new', routes);
+// app.use('/concerts/:id', routes);
+// app.use('/concerts/:id/edit', routes);
 
+app.use('/login', routes);
+app.use('/logout', routes);
+app.use('/user', routes);
 app.locals.moment = require('moment');
+
+
+// User
+app.use(cookieParser());
+app.use(session({
+  secret: 'work hard',
+  resave: true,
+  saveUninitialized: false
+}));
+
+
+
 module.exports = app;
