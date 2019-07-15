@@ -6,7 +6,7 @@ const routes = express.Router();
 var homeController = require('./home');
 var concertController = require('./concert');
 
-// var authController = require('./auth');
+var authController = require('./auth');
 var userController = require('./user');
 
 routes.route('/')
@@ -32,16 +32,9 @@ routes.route('/concerts/:id')
   .delete(concertController.delete);
 
 
-// routes.route('/login') 
-//   .get(authController.get)
-//   .post(authController.post);
-
-// console.log(authController);
-
-// routes.route('/login')
-//   .post(authController.optional, function(req, res, next) {
-//     authController.post;
-//   })
+routes.route('/login') 
+  .get(authController.get)
+  .post(authController.post);
 
 routes.route('/user')
   .post(userController.create);

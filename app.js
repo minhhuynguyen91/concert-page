@@ -26,6 +26,13 @@ app.use(express.static(path.join(__dirname, '/public')));
 app.use(methodOverride('_method'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(session({
+  secret: 'work hard',
+  resave: true,
+  saveUninitialized: false
+}));
+
 app.use('/', routes);
 app.use('/concerts', routes);
 // app.use('/concerts/new', routes);
@@ -35,17 +42,10 @@ app.use('/concerts', routes);
 app.use('/login', routes);
 app.use('/logout', routes);
 app.use('/user', routes);
-app.locals.moment = require('moment');
 
+app.locals.moment = require('moment');
 
 // User
 app.use(cookieParser());
-app.use(session({
-  secret: 'work hard',
-  resave: true,
-  saveUninitialized: false
-}));
-
-
 
 module.exports = app;

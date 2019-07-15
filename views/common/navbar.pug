@@ -15,5 +15,11 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
           spam.sr-only
       li.nav-item
         a.nav-link(href='/concerts') Concerts  
-      li.nav-item
-        a.nav-link(href='/concert/new') Create Concert
+
+      if session.userId
+        li.nav-item
+          a.nav-link(href='/concert/new') Create Concert
+      else
+        li.nav-item
+          a.nav-link(href='/login') Login
+

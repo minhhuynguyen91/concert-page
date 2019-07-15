@@ -10,7 +10,7 @@ const { body, validationResult } = require('express-validator/check');
 exports.index = function(req, res) {
   Concert.find()
     .then((concerts) => {
-      res.render('concert/concerts', {concerts});
+      res.render('concert/concerts', {concerts, session: req.session});
     })
 
     .catch(() => {
@@ -40,7 +40,7 @@ exports.post = function (req, res) {
 
 exports.new = function(req, res) {
   const concert = {title: '', content: ''};
-  res.render('concert/new', {title: 'Create concert event', method: 'POST', action:'/concerts' , concert});
+  res.render('concert/new', {title: 'Create concert event', method: 'POST', action:'/concerts' , concert, session: req.session});
 
 };
 
@@ -78,7 +78,7 @@ exports.put = function (req, res) {
       converter = new showdown.Converter();
       concert.content = converter.makeHtml(concert.content);
 
-      res.render('concert/show', {concert});
+      res.render('concert/show', {concert, session: req.session});
     })
     .catch((err) => {
       console.log(err.stack);
@@ -95,7 +95,7 @@ exports.id = function (req, res) {
   Concert.findOne( { '_id': objectId} )
     .then((concert) => {
       concert.content = converter.makeHtml(concert.content);
-      res.render('concert/show', {concert});
+      res.render('concert/show', {concert, session: req.session});
     })
 
     .catch(() => {
