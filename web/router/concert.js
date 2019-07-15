@@ -21,12 +21,8 @@ exports.index = function(req, res) {
 
 exports.post = function (req, res) {
 
-  // const errors = validationResult(req);
-  //
-  // console.log(req.body);
   req.body.start_date = moment(req.body.start_date, 'DD/MM/YYYYY').toDate();
   req.body.end_date = moment(req.body.end_date, 'DD/MM/YYYYY').toDate();
-  // console.log(req.body);
 
   const concert = new Concert(req.body);
   concert.save()
@@ -106,6 +102,6 @@ exports.id = function (req, res) {
 exports.delete = function(req, res) {
   const objectId = new mongo.ObjectId(req.params.id);
   Concert.deleteOne( { '_id' : objectId } )
-    .then(() => { res.redirect('/'); })
+    .then(() => { res.redirect('/concerts'); })
     .catch((err) => {console.log(err.stack); });
 };

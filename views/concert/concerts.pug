@@ -17,8 +17,12 @@ block content
                 .card-text(style="text-align:left;")
                   | Giờ chiếu #{concert.start_time} - #{concert.end_time}
 
-                .button-card
-                  a.btn.btn-primary(href="/concerts/" + concert._id + "/edit") Edit
-                .button-card
-                  form(action="/concerts/" + concert._id + "?_method=delete"  method="POST")
-                    button.btn.btn-danger(type="submit" value="Submit" onclick="return confirm('Are you sure to delete?')" ) Delete
+                if session.userId
+                  .button-card
+                    a.btn.btn-primary(href="/concerts/" + concert._id + "/edit") Edit
+                  .button-card
+                    form(action="/concerts/" + concert._id + "?_method=delete"  method="POST")
+                      button.btn.btn-danger(type="submit" value="Submit" onclick="return confirm('Are you sure to delete?')" ) Delete
+                else
+                  .button-card
+                    a.btn.btn-primary(href="/concerts/" + concert._id) Details

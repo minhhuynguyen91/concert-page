@@ -29,5 +29,5 @@ exports.post = function(req, res) {
 };
 
 exports.get = function(req, res) {
-  res.render('authenticate/login');
+  res.render('authenticate/login', {session: req.session});
 };
