@@ -36,6 +36,9 @@ routes.route('/login')
   .get(authController.get)
   .post(authController.post);
 
+routes.route('/logout') 
+  .get(authController.logout);
+
 routes.route('/user')
   .post(userController.create);
   

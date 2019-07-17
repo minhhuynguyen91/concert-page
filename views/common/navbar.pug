@@ -19,6 +19,8 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
       if session.userId
         li.nav-item
           a.nav-link(href='/concert/new') Create Concert
+        li.nav-item
+          a.nav-link(href='/logout' onclick="return confirm('Are you sure to log out?')") Logout
       else
         li.nav-item
           a.nav-link(href='/login') Login

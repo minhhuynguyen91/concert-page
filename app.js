@@ -1,4 +1,4 @@
-const express = require('express') 
+const express = require('express');
 const app = express();
 const routes = require('./web/router/index');
 const bodyParser = require('body-parser');
@@ -10,7 +10,7 @@ const session = require('express-session');
 
 
 app.set('views', path.join(__dirname + '/views'));
-app.set('view engine', 'pug')
+app.set('view engine', 'pug');
 
 // Js frontend
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist'));

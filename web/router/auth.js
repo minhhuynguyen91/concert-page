@@ -11,7 +11,7 @@ exports.requireLogin = function(req, res, next) {
     err.status = 401;
     return next(err);
   }
-}
+};
 
 exports.post = function(req, res) {
   
@@ -23,11 +23,23 @@ exports.post = function(req, res) {
     
     } else {
       req.session.userId = user._id;
-      return res.redirect('/') 
+      return res.redirect('/') ;
     }
   });
 };
 
 exports.get = function(req, res) {
   res.render('authenticate/login', {session: req.session});
+};
+
+exports.logout = function(req, res) {
+  if (req.session) {
+	  req.session.destroy(function(err) {
+	    if(err) {
+		  res.send('Something wrong happened when logging out!');
+	    } else {
+		  res.redirect('/');
+		}
+	  });
+  }
 };
