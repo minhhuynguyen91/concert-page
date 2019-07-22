@@ -18,7 +18,7 @@ exports.post = function(req, res) {
   User.authenticate(req.body.email, req.body.password, function(err, user) {
     if (err || !user) {
       var err = new Error('Wrong email or password.');
-      err.status = 401;
+      console.log(err);
       return res.render('authenticate/login');
     
     } else {
