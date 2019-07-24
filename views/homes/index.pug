@@ -32,7 +32,8 @@ block content
         .col-sm-12.col-lg-6
           .card
             .card-cover
-              img.cover-image.w-100(src="" + concert.img_link)
+              a(href="/concerts/" + concert._id)
+                img.cover-image.w-100(src=concert.img_link)
             .card-body
               .card-title= concert.title
               .card-text(style="text-align:left;") 
