@@ -24,6 +24,8 @@ exports.post = function (req, res) {
   req.body.start_date = moment(req.body.start_date, 'DD/MM/YYYYY').toDate();
   req.body.end_date = moment(req.body.end_date, 'DD/MM/YYYYY').toDate();
 
+  req.body.img_link = (req.body.img_link) ? req.body.img_link : "https://via.placeholder.com/700x500";
+  
   const concert = new Concert(req.body);
   concert.save()
     .then(() => { res.redirect('/'); })
@@ -46,7 +48,6 @@ exports.edit = function(req, res) {
     .then((concert) => {
 	  var newContent = concert.content.replace(/`/g, '\\`');
 	  concert.content = newContent;
-	  console.log(newContent);
       res.render('concert/edit', {title: 'Update concert event', method: 'POST', action:'/concerts/' +  objectId  + '?_method=put' ,concert, session: req.session});
     })
 
@@ -57,7 +58,8 @@ exports.edit = function(req, res) {
 
 exports.put = function (req, res) {
   const objectId = new mongo.ObjectId(req.params.id);
-
+  req.body.img_link = (req.body.img_link) ? req.body.img_link : "https://via.placeholder.com/700x500";
+	
   Concert.findOneAndUpdate({'_id' : objectId}, 
   { 
     'title' :req.body.title, 
