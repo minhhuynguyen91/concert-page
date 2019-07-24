@@ -6,6 +6,9 @@ const routes = express.Router();
 var homeController = require('./home');
 var concertController = require('./concert');
 
+var authController = require('./auth');
+var userController = require('./user');
+
 routes.route('/')
   .get(homeController.index);
 
@@ -28,5 +31,15 @@ routes.route('/concerts/:id')
   .put(concertController.put)
   .delete(concertController.delete);
 
+
+routes.route('/login') 
+  .get(authController.get)
+  .post(authController.post);
+
+routes.route('/logout') 
+  .get(authController.logout);
+
+routes.route('/user')
+  .post(userController.create);
   
 module.exports = routes;

@@ -4,7 +4,12 @@ const Concert = mongoose.model('Concert');
 exports.index = function(req, res) {
   Concert.find()
     .then((concerts) => {
-      res.render('homes/index', {header: 'home', concerts});
+      if (req.session.userId) {
+        res.render('homes/index', {header: 'home', concerts, session: req.session});    
+      } else {
+        res.render('homes/index', {header: 'home', concerts, session: {}});
+      }  
+
     })
     .catch((err) => {
       res.send('Something went wrong!');
@@ -12,5 +17,5 @@ exports.index = function(req, res) {
 };
 
 exports.contact = function(req, res) {
-  res.render('homes/contact');
+  res.render('homes/contact', {session: req.session});
 };

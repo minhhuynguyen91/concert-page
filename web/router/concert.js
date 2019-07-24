@@ -10,24 +10,22 @@ const { body, validationResult } = require('express-validator/check');
 exports.index = function(req, res) {
   Concert.find()
     .then((concerts) => {
-      res.render('concert/concerts', {concerts});
+      res.render('concert/concerts', {concerts, session: req.session});
     })
 
     .catch(() => {
       res.send('something went wrong');
-    }) 
+    });
 
 };
 
 exports.post = function (req, res) {
 
-  // const errors = validationResult(req);
-  //
-  console.log(req.body);
   req.body.start_date = moment(req.body.start_date, 'DD/MM/YYYYY').toDate();
   req.body.end_date = moment(req.body.end_date, 'DD/MM/YYYYY').toDate();
-  console.log(req.body);
 
+  req.body.img_link = (req.body.img_link) ? req.body.img_link : "https://via.placeholder.com/700x500";
+  
   const concert = new Concert(req.body);
   concert.save()
     .then(() => { res.redirect('/'); })
@@ -40,7 +38,7 @@ exports.post = function (req, res) {
 
 exports.new = function(req, res) {
   const concert = {title: '', content: ''};
-  res.render('concert/new', {title: 'Create concert event', method: 'POST', action:'/concerts' , concert});
+  res.render('concert/new', {title: 'Create concert event', method: 'POST', action:'/concerts' , concert, session: req.session});
 
 };
 
@@ -48,18 +46,20 @@ exports.edit = function(req, res) {
   const objectId = new mongo.ObjectId(req.params.id);
   Concert.findOne( { '_id': objectId} )
     .then((concert) => {
-      res.render('concert/edit', {title: 'Update concert event', method: 'POST', action:'/concerts/' +  objectId  + '?_method=put' ,concert});
+	  var newContent = concert.content.replace(/`/g, '\\`');
+	  concert.content = newContent;
+      res.render('concert/edit', {title: 'Update concert event', method: 'POST', action:'/concerts/' +  objectId  + '?_method=put' ,concert, session: req.session});
     })
 
     .catch(() => {
       res.send('something went wrong');
-    })
+    });
 };
 
 exports.put = function (req, res) {
   const objectId = new mongo.ObjectId(req.params.id);
-  console.log(req.body);
-
+  req.body.img_link = (req.body.img_link) ? req.body.img_link : "https://via.placeholder.com/700x500";
+	
   Concert.findOneAndUpdate({'_id' : objectId}, 
   { 
     'title' :req.body.title, 
@@ -67,8 +67,8 @@ exports.put = function (req, res) {
     'img_link': req.body.img_link,
     'note' : req.body.note,
     'tickets' : req.body.tickets,
-    'start_date' : req.body.start_date,
-    'end_date' : req.body.end_date,
+    'start_date' : moment(req.body.start_date, 'DD/MM/YYYY').toDate(),
+    'end_date' : moment(req.body.end_date, 'DD/MM/YYYY').toDate(),
     'start_time' : req.body.start_time,
     'end_time' : req.body.end_time,
     'updated_date' : Date.now()
@@ -79,7 +79,7 @@ exports.put = function (req, res) {
       converter = new showdown.Converter();
       concert.content = converter.makeHtml(concert.content);
 
-      res.render('concert/show', {concert});
+      res.render('concert/show', {concert, session: req.session});
     })
     .catch((err) => {
       console.log(err.stack);
@@ -96,7 +96,7 @@ exports.id = function (req, res) {
   Concert.findOne( { '_id': objectId} )
     .then((concert) => {
       concert.content = converter.makeHtml(concert.content);
-      res.render('concert/show', {concert});
+      res.render('concert/show', {concert, session: req.session});
     })
 
     .catch(() => {
@@ -107,6 +107,6 @@ exports.id = function (req, res) {
 exports.delete = function(req, res) {
   const objectId = new mongo.ObjectId(req.params.id);
   Concert.deleteOne( { '_id' : objectId } )
-    .then(() => { res.redirect('concert/concerts') })
-    .catch((err) => {console.log(err.stack)});
+    .then(() => { res.redirect('/concerts'); })
+    .catch((err) => {console.log(err.stack); });
 };

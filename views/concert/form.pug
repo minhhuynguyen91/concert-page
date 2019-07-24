@@ -115,9 +115,11 @@ form(action=action method=method)
 
 
 script(type="text/javascript").
+  var newContent = `!{concert.content}`
+  
   var simpleMDE = new SimpleMDE({
     element: $('#content')[0],
-    initialValue: `#{concert.content}`
+    initialValue: newContent
   });
 
   $(function () {
