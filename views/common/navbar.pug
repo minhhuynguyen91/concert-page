@@ -1,4 +1,4 @@
-nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+nav.navbar.navbar-expand-lg.navbar-light.navbar-custom
   a.navbar-brand(href='/')
     img(src='/stylesheet/image/logo.jpg', width='50', height='50', alt='Logo')
 
@@ -14,7 +14,7 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
           | Liên Hệ
           spam.sr-only
       li.nav-item
-        a.nav-link(href='/concerts') Vỡ diễn  
+        a.nav-link(href='/concerts') Vở diễn  
 
       li.nav-item
         a.nav-link(href='/referrals') Tin tức  
@@ -22,10 +22,10 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
       if session.userId
         li.nav-item.dropdown
           a#userDropDownMenu.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-            | Manage
+            | Quản Lý
           .dropdown-menu(aria-labelledby='userDropDownMenu')
-            a.dropdown-item(href='/concert/new') Create concert content
-            a.dropdown-item(href='/referrals/new') Create the referral article
+            a.dropdown-item(href='/concert/new') Tạo vở diễn
+            a.dropdown-item(href='/referrals/new') Tạo tin tức liên quan
           
         li.nav-item
           a.nav-link(href='/logout' onclick="return confirm('Are you sure to log out?')") Đăng xuất

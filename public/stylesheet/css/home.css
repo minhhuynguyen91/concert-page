@@ -14,6 +14,7 @@
 
 .feature-concert {
   padding-top: 3em;
+  text-transform: capitalize;
 }
 
 .feature-text {
