@@ -7,7 +7,8 @@ var homeController = require('./home');
 var concertController = require('./concert');
 
 var authController = require('./auth');
-var userController = require('./user');
+var userController = require('./user'); 
+var refController = require('./referrals');
 
 routes.route('/')
   .get(homeController.index);
@@ -41,5 +42,14 @@ routes.route('/logout')
 
 routes.route('/user')
   .post(userController.create);
-  
+
+routes.route('/referrals')
+  .post(refController.post);
+
+routes.route('/referrals/new')
+  .get(refController.new);
+
+routes.route('/referrals/:id')
+  .delete(refController.delete);
+
 module.exports = routes;

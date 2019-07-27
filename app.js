@@ -30,7 +30,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({
   secret: 'work hard',
   resave: true,
-  saveUninitialized: false
+  saveUninitialized: false,
+  cookie: {maxAge: 3600000}
 }));
 
 app.use('/', routes);
@@ -42,6 +43,7 @@ app.use('/concerts', routes);
 app.use('/login', routes);
 app.use('/logout', routes);
 app.use('/user', routes);
+app.use('/referrals', routes);
 
 app.locals.moment = require('moment');
 

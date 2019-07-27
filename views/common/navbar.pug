@@ -19,6 +19,14 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
       if session.userId
         li.nav-item
           a.nav-link(href='/concert/new') Create Concert
+
+        li.nav-item.dropdown
+          a#userDropDownMenu.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+            | Concert management
+          .dropdown-menu(aria-labelledby='userDropDownMenu')
+            a.dropdown-item(href='/concert/new') Create concert content
+            a.dropdown-item(href='/referrals/new') Create the referral article
+          
         li.nav-item
           a.nav-link(href='/logout' onclick="return confirm('Are you sure to log out?')") Logout
       else

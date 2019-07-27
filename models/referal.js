@@ -12,4 +12,4 @@ const concertSchema = new mongoose.Schema({
   
 });
 
-module.exports = mongoose.model('Referal', concertSchema);
+module.exports = mongoose.model('Referral', concertSchema);
