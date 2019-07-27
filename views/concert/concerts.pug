@@ -1,12 +1,11 @@
 extends ../layouts/layout
 
 block content
-  br
   .container
     .row
       each concert in concerts
         .col-sm-12.col-lg-6
-          .card
+          .card.mt-4
             .card-cover
               a(href="/concerts/" + concert._id)
                 img.cover-image.w-100(src=concert.img_link)

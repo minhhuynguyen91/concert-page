@@ -44,12 +44,14 @@ routes.route('/user')
   .post(userController.create);
 
 routes.route('/referrals')
-  .post(refController.post);
+  .post(refController.post)
+  .get(refController.index);
 
 routes.route('/referrals/new')
   .get(refController.new);
 
 routes.route('/referrals/:id')
+  // .get(refController.id)
   .delete(refController.delete);
 
 module.exports = routes;

@@ -1,3 +1,5 @@
+var mongo = require('mongodb');
+
 const mongoose = require('mongoose');
 
 const Referral = mongoose.model('Referral');
@@ -23,7 +25,7 @@ exports.new = function(req, res) {
 exports.index = function(req, res) {
   Referral.find()
     .then((referrals) => {
-      res.render('referrals/referrals', {referrals});
+      res.render('referrals/referrals', {referrals, session : req.session});
     })
     .catch((err) => {
       console.log(err);
@@ -35,10 +37,14 @@ exports.delete = function(req, res) {
   var objectId = new mongo.ObjectId(req.params.id);
   Referral.deleteOne({_id : objectId})
     .then(() => {
-      res.redirect('/');
+      res.redirect('/referrals');
     })
     .catch((err) => {
       console.log(err);
       res.send('Cannot remove the referral record');
     });
+};
+
+exports.id = function(req, res) {
+
 };

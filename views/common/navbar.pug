@@ -8,28 +8,28 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
     ul.navbar-nav.mr-auto
       li.nav-item
         a.nav-link(href='/')
-          | Home 
+          | Trang Chủ 
       li.nav-item
         a.nav-link(href='/contact') 
-          | Contact
+          | Liên Hệ
           spam.sr-only
       li.nav-item
-        a.nav-link(href='/concerts') Concerts  
+        a.nav-link(href='/concerts') Vỡ diễn  
+
+      li.nav-item
+        a.nav-link(href='/referrals') Tin tức  
 
       if session.userId
-        li.nav-item
-          a.nav-link(href='/concert/new') Create Concert
-
         li.nav-item.dropdown
           a#userDropDownMenu.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-            | Concert management
+            | Manage
           .dropdown-menu(aria-labelledby='userDropDownMenu')
             a.dropdown-item(href='/concert/new') Create concert content
             a.dropdown-item(href='/referrals/new') Create the referral article
           
         li.nav-item
-          a.nav-link(href='/logout' onclick="return confirm('Are you sure to log out?')") Logout
+          a.nav-link(href='/logout' onclick="return confirm('Are you sure to log out?')") Đăng xuất
       else
         li.nav-item
-          a.nav-link(href='/login') Login
+          a.nav-link(href='/login') Đăng nhập
 

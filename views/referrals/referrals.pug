@@ -1,5 +1,17 @@
 extends ../layouts/layout 
 
 block content
-  br
-  
+  .container
+    .row
+      each referral in referrals
+        .col-sm-12.col-lg-6
+          .card.mt-4
+            .card-body
+              .card-title
+                h3= referral.title
+              .card-text
+                a(href=referral.url) #{referral.url}
+              br
+              if session.userId
+                form(action="/referrals/" + referral._id + "?_method=delete" method="POST")
+                  button.btn.btn-danger(type="submit" value="Submit" onclick="return confirm('Are you sure to delete?')") Delete
