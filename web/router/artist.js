@@ -51,6 +51,7 @@ exports.new = function(req, res) {
 
 
 exports.edit = function(req, res) {
+  
   const objectId = new mongo.ObjectId(req.params.id);
   req.body.profile_img_link = (req.body.profile_img_link) ? req.body.profile_img_link : "https://via.placeholder.com/50x50";
 
