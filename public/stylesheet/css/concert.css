@@ -14,3 +14,15 @@
 .button-card {
   padding-top: 0.5em;
 }
+
+.concert-title-card-display {
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.concert-img-card-display {
+  width: 100%;
+  height: 20vw;
+  object-fit: cover;
+}

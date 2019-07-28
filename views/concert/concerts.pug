@@ -5,12 +5,14 @@ block content
     .row
       each concert in concerts
         .col-sm-12.col-lg-6
-          .card.mt-4
-            .card-cover
+          .card.mt-4.border-0
+            .card-cover.border-0
               a(href="/concerts/" + concert._id)
-                img.cover-image.w-100(src=concert.img_link)
+                .concert-img-card-display.text-center
+                  img.cover-image(src=concert.img_link)
               .card-body
-                .card-title= concert.title
+                .concert-title-card-display.text-center
+                  .card-title= concert.title
                 .card-text(style="text-align:left;") 
                   | Ngày khởi chiếu: #{moment(concert.start_date).format('DD/MM/YYYY')} - #{moment(concert.end_date).format('DD/MM/YYYY')}
                 .card-text(style="text-align:left;")
@@ -24,4 +26,4 @@ block content
                       button.btn.btn-danger(type="submit" value="Submit" onclick="return confirm('Are you sure to delete?')" ) Delete
                 else
                   .button-card
-                    a.btn.btn-primary(href="/concerts/" + concert._id) Details
+                    a.btn.btn-primary(href="/concerts/" + concert._id) Xem
