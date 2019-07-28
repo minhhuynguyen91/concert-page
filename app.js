@@ -44,6 +44,8 @@ app.use('/login', routes);
 app.use('/logout', routes);
 app.use('/user', routes);
 app.use('/referrals', routes);
+app.use('/artists', routes);
+
 
 app.locals.moment = require('moment');
 

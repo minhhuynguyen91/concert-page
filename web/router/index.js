@@ -9,6 +9,8 @@ var concertController = require('./concert');
 var authController = require('./auth');
 var userController = require('./user'); 
 var refController = require('./referrals');
+var artistController = require('./artist');
+
 
 routes.route('/')
   .get(homeController.index);
@@ -31,6 +33,21 @@ routes.route('/concerts/:id')
   .get(concertController.id)
   .put(concertController.put)
   .delete(concertController.delete);
+
+routes.route('/artists')
+  .get(artistController.index)
+  .post(artistController.post);
+
+routes.route('/artists/new')
+  .get(artistController.new);
+
+routes.route('/artists/:id')
+  .get(artistController.id)
+  .put(artistController.put)
+  .delete(artistController.delete);
+
+routes.route('/artists/:id/edit')
+  .get(artistController.edit);
 
 
 routes.route('/login') 

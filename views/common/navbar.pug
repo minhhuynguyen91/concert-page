@@ -19,6 +19,9 @@ nav.navbar.navbar-expand-lg.navbar-light.navbar-custom
       li.nav-item
         a.nav-link(href='/referrals') Tin tức  
 
+      li.nav-item
+        a.nav-link(href='/artists') Nghệ sĩ
+
       if session.userId
         li.nav-item.dropdown
           a#userDropDownMenu.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
@@ -26,6 +29,7 @@ nav.navbar.navbar-expand-lg.navbar-light.navbar-custom
           .dropdown-menu(aria-labelledby='userDropDownMenu')
             a.dropdown-item(href='/concert/new') Tạo vở diễn
             a.dropdown-item(href='/referrals/new') Tạo tin tức liên quan
+            a.dropdown-item(href='/artists/new') Tạo nghệ sĩ
           
         li.nav-item
           a.nav-link(href='/logout' onclick="return confirm('Are you sure to log out?')") Đăng xuất

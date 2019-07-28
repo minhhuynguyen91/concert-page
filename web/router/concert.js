@@ -51,7 +51,8 @@ exports.edit = function(req, res) {
       res.render('concert/edit', {title: 'Update concert event', method: 'POST', action:'/concerts/' +  objectId  + '?_method=put' ,concert, session: req.session});
     })
 
-    .catch(() => {
+    .catch((err) => {
+      console.log(err);
       res.send('something went wrong');
     });
 };

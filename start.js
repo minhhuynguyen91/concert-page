@@ -16,6 +16,7 @@ mongoose.connection
 require('./models/concert');
 require('./models/referal');
 require('./models/user');
+require('./models/artist');
 
 //require('./config/web/passport');
 

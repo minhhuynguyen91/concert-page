@@ -1,0 +1,20 @@
+extends ../layouts/layout
+
+block content
+  .container
+    .row
+      each artist in artists
+        .col-sm-12.col-lg-6
+          .card.mt-4.border-0
+            .artist-image
+              img.card-img-top.rounded-circle(src=artist.profile_img_link style="width: 150px; height: 150px; object-fit: cover;")
+            .card-body
+              .artist-name= artist.name
+              .artist-details
+                a.btn.btn-primary(href="/artists/" + artist._id) Details
+              
+              .artist-details.mt-1  
+                if session.userId
+                  a.btn.btn-primary(href="/artists/" + artist._id + "/edit") Edit
+                  form(action="/artists/" + artist._id + "?_method=delete" method="post")
+                    button.btn.btn-danger.mt-1(type="submit" value="Submit" onclick="return confirm('Are you sure to delete?')" ) Delete
