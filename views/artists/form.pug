@@ -1,0 +1,36 @@
+form(action=action method=method)
+  .form-group
+    label(for="name") Name
+    input.form-control(
+      type="text",
+      id="name",
+      name="name"
+      value=artist.name
+    )
+
+  .form-group
+    label(for="profile_img_link") Profile image
+    input.form-control(
+      type="text",
+      id="profile_img_link",
+      name="profile_img_link"
+      value=artist.profile_img_link
+    )
+
+  .form-group
+    label(for="bio") Bio
+    textarea.form-control(
+      type="text"
+      id="bio"
+      name="bio"
+    )
+
+  button.btn.btn-primary(type="submit" value="Submit") Submit
+
+script(type="text/javascript").
+  var newContent = `!{artist.bio}`
+
+  var simpleMDE = new SimpleMDE({
+    element: $('#bio')[0],
+    initialValue: newContent
+  });

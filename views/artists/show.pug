@@ -1,0 +1,12 @@
+extends ../layouts/layout
+
+block content
+  br
+  .container
+    .artist-name 
+      h2= artist.name
+    .artist-image
+      img.rounded(src=artist.profile_img_link)
+
+    .artist-bio.mt-5 !{artist.bio}
+

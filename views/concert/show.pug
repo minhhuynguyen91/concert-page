@@ -11,9 +11,9 @@ block content
 
         .concert-time= moment(concert.start_date).format('DD/MM/YYYY') + '-' + moment(concert.end_date).format('DD/MM/YYYY') + ' (' + concert.start_time + '-' + concert.end_time  + ')'
 
-        .concert-ticket Total ticket: #{concert.tickets}
+        .concert-ticket Số ghế: #{concert.tickets}
 
-        .concert-note Note: #{concert.note}
+        .concert-note Ghi chú: #{concert.note}
 
       hr
       

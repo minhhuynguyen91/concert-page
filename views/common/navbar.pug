@@ -1,4 +1,7 @@
-nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+img.img-fluid(src="/stylesheet/image/header_image.jpg" style="height: 80%; width: 100%")
+
+
+nav.navbar.navbar-expand-lg.navbar-light.navbar-custom
   a.navbar-brand(href='/')
     img(src='/stylesheet/image/logo.jpg', width='50', height='50', alt='Logo')
 
@@ -8,20 +11,32 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
     ul.navbar-nav.mr-auto
       li.nav-item
         a.nav-link(href='/')
-          | Home 
+          | Trang Chủ 
       li.nav-item
         a.nav-link(href='/contact') 
-          | Contact
+          | Giới Thiệu
           spam.sr-only
       li.nav-item
-        a.nav-link(href='/concerts') Concerts  
+        a.nav-link(href='/concerts') Vở diễn  
+
+      li.nav-item
+        a.nav-link(href='/referrals') Tin tức  
+
+      li.nav-item
+        a.nav-link(href='/artists') Nghệ sĩ
 
       if session.userId
+        li.nav-item.dropdown
+          a#userDropDownMenu.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+            | Quản Lý
+          .dropdown-menu(aria-labelledby='userDropDownMenu')
+            a.dropdown-item(href='/concert/new') Tạo vở diễn
+            a.dropdown-item(href='/referrals/new') Tạo tin tức liên quan
+            a.dropdown-item(href='/artists/new') Tạo nghệ sĩ
+          
         li.nav-item
-          a.nav-link(href='/concert/new') Create Concert
-        li.nav-item
-          a.nav-link(href='/logout' onclick="return confirm('Are you sure to log out?')") Logout
+          a.nav-link(href='/logout' onclick="return confirm('Are you sure to log out?')") Đăng xuất
       else
         li.nav-item
-          a.nav-link(href='/login') Login
+          a.nav-link(href='/login') Đăng nhập
 

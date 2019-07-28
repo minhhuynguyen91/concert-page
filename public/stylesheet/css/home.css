@@ -14,6 +14,7 @@
 
 .feature-concert {
   padding-top: 3em;
+  text-transform: capitalize;
 }
 
 .feature-text {
@@ -33,4 +34,19 @@
 
 .w-100 {
   width: 100%;
+}
+
+.testimony-header {
+  text-align: center; 
+}
+
+.testimony-avatar {
+  width: 150px; 
+  height: 150px; 
+  object-fit: cover; 
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+    filter: invert(100%);
 }

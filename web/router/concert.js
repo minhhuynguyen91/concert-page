@@ -46,12 +46,18 @@ exports.edit = function(req, res) {
   const objectId = new mongo.ObjectId(req.params.id);
   Concert.findOne( { '_id': objectId} )
     .then((concert) => {
-	  var newContent = concert.content.replace(/`/g, '\\`');
-	  concert.content = newContent;
+      try { 
+    	  var newContent = concert.content.replace(/`/g, '\\`');
+    	  concert.content = newContent;
+      }
+      catch(err) {
+        
+      }
       res.render('concert/edit', {title: 'Update concert event', method: 'POST', action:'/concerts/' +  objectId  + '?_method=put' ,concert, session: req.session});
     })
 
-    .catch(() => {
+    .catch((err) => {
+      console.log(err);
       res.send('something went wrong');
     });
 };
