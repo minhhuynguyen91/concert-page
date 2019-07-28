@@ -50,16 +50,20 @@ exports.new = function(req, res) {
 }
 
 
-exports.edit = function(req, res) {
-  
+exports.edit = function(req, res) {  
   const objectId = new mongo.ObjectId(req.params.id);
+
   req.body.profile_img_link = (req.body.profile_img_link) ? req.body.profile_img_link : "https://via.placeholder.com/50x50";
 
-
-  Artist.findOne({'_id' : objectId})
+  Artist.findOne( {'_id' : objectId} )
     .then((artist) => {
-      var newBio = artist.bio.replace(/`/g, '\\`');
-      artist.bio = newBio;
+      try {
+        var newBio = artist.bio.replace(/`/g, '\\`');
+        artist.bio = newBio;
+      }
+      catch(err){
+        
+      }
 
       res.render('artists/edit', {title: "Update artist's bio content", method: 'POST', action: '/artists/' + objectId + '?_method=put', artist, session: req.session})
 
