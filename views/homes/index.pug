@@ -6,17 +6,19 @@ block content
       img.img-fluid(src="stylesheet/image/banner_image.jpg")
   
   .container
-    .related-event
-      h3 Tin tức liên quan
+    .related-event.pb-5
+      h2.font-weight-bold Các tin tức liên quan
       .row
         each referral in referrals
           .col-6
             a(href=referral.url) #{referral.title}
 
+  
+  include testimony
+
   .container
-    .feature-concert
-      .jumbotron
-        h1.feature-text Vở diễn sắp trình chiếu
+    section.text-center.my-5
+      h2.h1-responsive.font-weight-bold.my-5 Vở diễn sắp trình chiếu
 
     .row
       each concert in concerts
