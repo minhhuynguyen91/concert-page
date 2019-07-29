@@ -10,7 +10,7 @@ var authController = require('./auth');
 var userController = require('./user'); 
 var refController = require('./referrals');
 var artistController = require('./artist');
-
+var timelineController = require('./timeline');
 
 routes.route('/')
   .get(homeController.index);
@@ -70,5 +70,9 @@ routes.route('/referrals/new')
 routes.route('/referrals/:id')
   // .get(refController.id)
   .delete(refController.delete);
+
+
+routes.route('/timelines')
+  .get(timelineController.index);
 
 module.exports = routes;

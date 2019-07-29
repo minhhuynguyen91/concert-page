@@ -19,6 +19,7 @@ app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist')
 app.use('/moment', express.static(__dirname + '/node_modules/moment'));
 app.use('/tempusdominus', express.static(__dirname + '/node_modules/tempusdominus-bootstrap-4/build'));
 app.use('/simplemde', express.static(__dirname + '/node_modules/simplemde/dist'));
+app.use('/fontawesome', express.static(__dirname + '/node_modules/\@fortawesome/fontawesome-free'));
 
 // Stylesheet
 app.use(express.static(path.join(__dirname, '/public')));
@@ -45,7 +46,7 @@ app.use('/logout', routes);
 app.use('/user', routes);
 app.use('/referrals', routes);
 app.use('/artists', routes);
-
+app.use('/timelines', routes);
 
 app.locals.moment = require('moment');
 
