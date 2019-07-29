@@ -4,17 +4,7 @@ block content
   .container
     .image-banner
       img.img-fluid(src="stylesheet/image/banner_image.jpg")
-  
-  .container
-    .related-event.pb-5
-      h2.font-weight-bold Các tin tức liên quan
-      .row
-        each referral in referrals
-          .col-6
-            a(href=referral.url) #{referral.title}
 
-  
-  include testimony
 
   .container
     section.text-center.my-5
@@ -31,6 +21,21 @@ block content
               .concert-title-card-display
                 .card-title= concert.title
               .card-text(style="text-align:left;") 
-                | Ngày khởi chiếu: #{moment(concert.start_date).format('DD/MM/YYYY')} - #{moment(concert.end_date).format('DD/MM/YYYY')}
+                | Ngày diễn: #{moment(concert.start_date).format('DD/MM/YYYY')} - #{moment(concert.end_date).format('DD/MM/YYYY')}
               .card-text(style="text-align:left;")
-                | Giờ chiếu #{concert.start_time} - #{concert.end_time}
+                | Xuất diễn #{concert.start_time} - #{concert.end_time}
+
+  
+  include timelines
+
+  .container.pt-2
+    .related-event
+      h1.display-4.text-center.pb-2 Tin Tức
+      .row
+        each referral in referrals
+          .col-6
+            a(href=referral.url) #{referral.title}
+
+
+
+  //include testimony

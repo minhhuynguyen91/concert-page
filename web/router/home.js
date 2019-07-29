@@ -4,7 +4,7 @@ const Referral = mongoose.model('Referral');
 
 
 exports.index = function(req, res) {
-  Concert.find()
+  Concert.find().sort({'start_date': 1})
     .then((concerts) => {
       Referral.find()
         .then((referrals) => {
