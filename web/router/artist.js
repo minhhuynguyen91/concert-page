@@ -81,7 +81,7 @@ exports.put = function(req, res) {
   {
     'name' : req.body.name,
     'profile_img_link' : req.body.profile_img_link,
-    'bio' : req.body.io
+    'bio' : req.body.bio
 
   }, {new: true})
 
