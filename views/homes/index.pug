@@ -25,17 +25,23 @@ block content
               .card-text(style="text-align:left;")
                 | Xuất diễn #{concert.start_time} - #{concert.end_time}
 
-  
+              .card-text.text-center
+                a.btn.btn-primary(href="/concerts/" + concert._id) Xem
   include timelines
 
   .container.pt-2
     .related-event
-      h1.display-4.text-center.pb-2 Tin Tức
+      h2.h1-responsive.font-weight-bold.my-5.pb-2.text-center Tin Tức
       .row
         each referral in referrals
           .col-6
             a(href=referral.url) #{referral.title}
 
 
+  section.artists-page.pt-2
+    h2.h1-responsive.font-weight-bold.my-5.pb-2.text-center Nghệ sĩ
+    
+    include artists
+    
 
   //include testimony
