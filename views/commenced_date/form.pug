@@ -1,0 +1,21 @@
+form(action=action method=method)
+  .form-group
+    label(for="start_date") Start date
+    input.form-control(
+      type="text",
+      id="start_date",
+      name="start_date"
+      value=artist.name
+    )
+
+  .form-group
+    label(for="profile_img_link") Profile image
+    input.form-control(
+      type="text",
+      id="profile_img_link",
+      name="profile_img_link"
+      value=artist.profile_img_link
+    )
+
+
+  button.btn.btn-primary(type="submit" value="Submit") Submit

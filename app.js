@@ -47,6 +47,7 @@ app.use('/user', routes);
 app.use('/referrals', routes);
 app.use('/artists', routes);
 app.use('/timelines', routes);
+app.use('/commencedDates', routes);
 
 app.locals.moment = require('moment');
 

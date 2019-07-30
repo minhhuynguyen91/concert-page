@@ -11,6 +11,7 @@ var userController = require('./user');
 var refController = require('./referrals');
 var artistController = require('./artist');
 var timelineController = require('./timeline');
+var commencedDateController = require('./commenced_date');
 
 routes.route('/')
   .get(homeController.index);
@@ -74,5 +75,20 @@ routes.route('/referrals/:id')
 
 routes.route('/timelines')
   .get(timelineController.index);
+
+routes.route('/commencedDates')
+  .get(commencedDateController.index)
+  .post(commencedDateController.post);
+
+routes.route('/commencedDates/new')
+  .get(commencedDateController.new);
+
+routes.route('/commencedDates/:id')
+  .id(commencedDateController.id)
+  .delete(commencedDateController.delete)
+  .put(commencedDateController.put);
+
+routes.route('/commencedDates/:id/edit')
+  .edit(commencedDateController.edit);
 
 module.exports = routes;

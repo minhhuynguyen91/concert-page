@@ -17,6 +17,7 @@ require('./models/concert');
 require('./models/referal');
 require('./models/user');
 require('./models/artist');
+require('./models/commenced_date');
 
 //require('./config/web/passport');
 
