@@ -20,7 +20,7 @@ exports.index = function(req, res) {
         as: 'concertDetail'
       }
     }
-  ]).then((commencedDates) => {
+  ]).sort({'start_date': 1}).then((commencedDates) => {
     //console.log(commencedDates);
     res.render('commenced_date/commenced_dates', 
     {

@@ -21,7 +21,7 @@ exports.index = function(req, res) {
                     as: 'concertDetail'
                   }
                 }
-              ]).then((commencedDates) => {
+              ]).sort({'start_date': 1}).then((commencedDates) => {
                 res.render('homes/index', {header: 'home', concerts, session: req.session, referrals, artists, commencedDates});
               
               })
