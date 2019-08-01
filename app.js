@@ -21,6 +21,9 @@ app.use('/tempusdominus', express.static(__dirname + '/node_modules/tempusdominu
 app.use('/simplemde', express.static(__dirname + '/node_modules/simplemde/dist'));
 app.use('/fontawesome', express.static(__dirname + '/node_modules/\@fortawesome/fontawesome-free'));
 
+app.use(express.static(__dirname, { dotfiles: 'allow' } ));
+
+
 // Stylesheet
 app.use(express.static(path.join(__dirname, '/public')));
 
