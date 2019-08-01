@@ -21,6 +21,7 @@ exports.index = function(req, res) {
       }
     }
   ]).then((commencedDates) => {
+    //console.log(commencedDates);
     res.render('commenced_date/commenced_dates', 
     {
       session: req.session,
@@ -54,7 +55,7 @@ exports.post = function(req, res) {
             $push : {commencedDateIds: commencedDate._id}
           })
             .then(() => {
-              res.redirect('/');
+              res.redirect('/commencedDates');
             })
             .catch((err) => {
               console.log(err);
@@ -138,7 +139,7 @@ exports.put = function(req, res) {
                _concertId: updatedConcertId
              }, {returnNewDocument: true})
               .then((commencedDate) => {
-                res.redirect('/');
+                res.redirect('/commencedDates/');
               })
 
               .catch((err) => {

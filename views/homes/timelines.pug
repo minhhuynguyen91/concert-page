@@ -3,20 +3,27 @@
     .col-lg-8.mx-auto
       h1.display-4 Lịch Diễn
       p.lead.mb-0 Thời gian bắt đầu - Ngày bắt đầu trình chiếu
-      
-  // End
+
+
+.container
   .row
     .col-lg-7.mx-auto
-      // Timeline
       ul.timeline
-        each concert in concerts
+        each commencedDate, index in commencedDates
           li.timeline-item.bg-black.rounded.ml-3.p-4.shadow
             .timeline-arrow
-            h2.h5.mb-0.timelines-title= concert.title
+
+            h2.h5.mb-0.timelines-title= commencedDate.concertDetail[0].title
+
             span.small.text-gray
               i.fa.fa-clock.mr-1
-              | #{concert.start_time} - #{moment(concert.start_date).format('DD/MM/YYYY')}
+                | #{commencedDate.start_time} - #{moment(commencedDate.start_date).format('DD/MM/YYYY')}
+
             p.text-small.mt-2.font-weight-light
-              | Số vé: #{concert.tickets}
+              | Số vé : #{commencedDate.concertDetail[0].tickets}
               br
-              | Thể loại: #{concert.note}
+              | Thể loại: #{commencedDate.concertDetail[0].note}
+              br
+            if session.userId
+
+              a.btn.btn-primary(href="/commencedDates/" + commencedDate._id + "/edit") Edit
