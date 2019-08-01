@@ -52,10 +52,6 @@ app.use('/artists', routes);
 app.use('/timelines', routes);
 app.use('/commencedDates', routes);
 
-app.get('/.well-known/acme-challenge/:content', function(req, res) {
-  res.send('yaptj5lNUDerIVYZmNRMd_b6f5GDpEC6TTwFFxA0UBU');
-})
-
 
 app.locals.moment = require('moment');
 
