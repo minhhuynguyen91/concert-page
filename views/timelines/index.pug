@@ -3,24 +3,24 @@ extends ../layouts/layout
 block content
 
   .container.py-5
-  .row.text-center.mb-5
-    .col-lg-8.mx-auto
-      h1.display-4 Lịch Diễn
-      p.lead.mb-0 Thời gian bắt đầu - Ngày bắt đầu trình chiếu
+    .row.text-center.mb-5
+      .col-lg-8.mx-auto
+        h1.display-4 Lịch Diễn
+        p.lead.mb-0 Thời gian bắt đầu - Ngày bắt đầu trình chiếu
       
-  // End
-  .row
-    .col-lg-7.mx-auto
-      // Timeline
-      ul.timeline
-        each concert in concerts
-          li.timeline-item.bg-black.rounded.ml-3.p-4.shadow
-            .timeline-arrow
-            h2.h5.mb-0.timelines-title= concert.title
-            span.small.text-gray
-              i.fa.fa-clock.mr-1
-              | #{concert.start_time} - #{moment(concert.start_date).format('DD/MM/YYYY')}
-            p.text-small.mt-2.font-weight-light
-              | Số vé: #{concert.tickets}
-              br
-              | Ghi chú: #{concert.note}
+  
+    .row
+      .col-lg-7.mx-auto
+        // Timeline
+        ul.timeline
+          each concert in concerts
+            li.timeline-item.bg-black.rounded.ml-3.p-4.shadow
+              .timeline-arrow
+              h2.h5.mb-0.timelines-title= concert.title
+              span.small.text-gray
+                i.fa.fa-clock.mr-1
+                | #{concert.start_time} - #{moment(concert.start_date).format('DD/MM/YYYY')}
+              p.text-small.mt-2.font-weight-light
+                | Số vé: #{concert.tickets}
+                br
+                | Ghi chú: #{concert.note}

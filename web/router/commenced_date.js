@@ -10,14 +10,26 @@ exports.id = function(req, res) {
 };
 
 exports.index = function(req, res) {
-  CommencedDate.find().sort({'start_date' : 1})
-    .then((commencedDates) => {
-      res.render('commenced_date/commenced_dates', {session: req.session, commencedDates});
-    })
-    .catch((err) => {
-      console.log(err);
-      res.send('Cannot get the commenced dates');
+  CommencedDate.aggregate([
+    {
+      $lookup:
+      {
+        from: 'concerts',
+        localField: '_concertId',
+        foreignField: '_id',
+        as: 'concertDetail'
+      }
+    }
+  ]).then((commencedDates) => {
+    res.render('commenced_date/commenced_dates', 
+    {
+      session: req.session,
+      commencedDates
+                                                 
     });
+    // res.send('Hello bois');
+  });
+
 };
 
 exports.post = function(req, res) {
@@ -149,35 +161,6 @@ exports.put = function(req, res) {
       console.log(err);
       res.send('Cannot get the related data');
     });
-  // Concert.findOne({title: req.body.concertName})
-  //   .then((concert) => {
-  //     const _concertId = new mongo.ObjectId(concert._id);
-  //     const commencedId = new mongo.ObjectId(req.params.id);
-  //     CommencedDate.findOneAndUpdate({'_id': commencedId}, 
-  //     {
-  //       start_date: moment(req.body.start_date, 'DD/MM/YYYYY').toDate(),
-  //       start_time: req.body.start_time,
-  //       end_time: req.body.end_time,
-  //       _concertId: _concertId
-  //     }, {returnNewDocument: true})
-
-  //       .then((commencedDate) => {
-  //         // Update the relative database from the Concert
-
-          
-  //       })
-
-  //       .catch((err) => {
-  //         console.log(err);
-  //         res.send("Cannot update the commenced date");
-  //       });
-    
-  //   })
-  
-  //   .catch((err) => {
-  //     console.log(err);
-  //     res.send('Cannot get the concert');
-  //   });
     
 };
 
