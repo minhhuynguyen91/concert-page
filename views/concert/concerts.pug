@@ -11,10 +11,6 @@ block content
             .card-body
               .concert-title-card-display.text-center
                 .card-title= concert.title
-              .card-text(style="text-align:left;") 
-                | Ngày khởi chiếu: #{moment(concert.start_date).format('DD/MM/YYYY')} - #{moment(concert.end_date).format('DD/MM/YYYY')}
-              .card-text(style="text-align:left;")
-                | Giờ chiếu #{concert.start_time} - #{concert.end_time}
 
               if session.userId
                 .button-card

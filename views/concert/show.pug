@@ -6,11 +6,8 @@ block content
       .col-lg-12.col-sm-12
         img.img-fluid.card-image-top.concert-photo(src=concert.img_link style="width:100%")
 
-      .col-lg-12.col-sm-12.pb-2        
+      .col-lg-12.col-sm-12.pb-2
         h2.concert-title= concert.title
-
-        .concert-time= moment(concert.start_date).format('DD/MM/YYYY') + '-' + moment(concert.end_date).format('DD/MM/YYYY') + ' (' + concert.start_time + '-' + concert.end_time  + ')'
-
         .concert-ticket Số ghế: #{concert.tickets}
 
         .concert-note Thể loại: #{concert.note}

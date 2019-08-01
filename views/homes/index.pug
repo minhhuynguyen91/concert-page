@@ -20,10 +20,6 @@ block content
             .card-body.text-center
               .concert-title-card-display
                 .card-title= concert.title
-              .card-text(style="text-align:left;") 
-                | Ngày diễn: #{moment(concert.start_date).format('DD/MM/YYYY')} - #{moment(concert.end_date).format('DD/MM/YYYY')}
-              .card-text(style="text-align:left;")
-                | Xuất diễn #{concert.start_time} - #{concert.end_time}
 
               .card-text.text-center
                 a.btn.btn-primary(href="/concerts/" + concert._id) Xem
