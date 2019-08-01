@@ -6,24 +6,22 @@ block content
       each concert in concerts
         .col-sm-12.col-lg-6
           .card.mt-4.border-0
-            .card-cover.border-0
-              a(href="/concerts/" + concert._id)
-                .concert-img-card-display.text-center
-                  img.cover-image(src=concert.img_link)
-              .card-body
-                .concert-title-card-display.text-center
-                  .card-title= concert.title
-                .card-text(style="text-align:left;") 
-                  | Ngày khởi chiếu: #{moment(concert.start_date).format('DD/MM/YYYY')} - #{moment(concert.end_date).format('DD/MM/YYYY')}
-                .card-text(style="text-align:left;")
-                  | Giờ chiếu #{concert.start_time} - #{concert.end_time}
+            a(href="/concerts/" + concert._id)
+              img.card-img-top.concert-img-card-display(src=concert.img_link)
+            .card-body
+              .concert-title-card-display.text-center
+                .card-title= concert.title
+              .card-text(style="text-align:left;") 
+                | Ngày khởi chiếu: #{moment(concert.start_date).format('DD/MM/YYYY')} - #{moment(concert.end_date).format('DD/MM/YYYY')}
+              .card-text(style="text-align:left;")
+                | Giờ chiếu #{concert.start_time} - #{concert.end_time}
 
-                if session.userId
-                  .button-card
-                    a.btn.btn-primary(href="/concerts/" + concert._id + "/edit") Edit
-                  .button-card
-                    form(action="/concerts/" + concert._id + "?_method=delete"  method="POST")
-                      button.btn.btn-danger(type="submit" value="Submit" onclick="return confirm('Are you sure to delete?')" ) Delete
-                else
-                  .button-card
-                    a.btn.btn-primary(href="/concerts/" + concert._id) Xem
+              if session.userId
+                .button-card
+                  a.btn.btn-primary(href="/concerts/" + concert._id + "/edit") Edit
+                .button-card
+                  form(action="/concerts/" + concert._id + "?_method=delete"  method="POST")
+                    button.btn.btn-danger(type="submit" value="Submit" onclick="return confirm('Are you sure to delete?')" ) Delete
+              else
+                .button-card
+                  a.btn.btn-primary(href="/concerts/" + concert._id) Xem

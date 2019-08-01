@@ -10,7 +10,8 @@ var authController = require('./auth');
 var userController = require('./user'); 
 var refController = require('./referrals');
 var artistController = require('./artist');
-
+var timelineController = require('./timeline');
+var commencedDateController = require('./commenced_date');
 
 routes.route('/')
   .get(homeController.index);
@@ -70,5 +71,24 @@ routes.route('/referrals/new')
 routes.route('/referrals/:id')
   // .get(refController.id)
   .delete(refController.delete);
+
+
+routes.route('/timelines')
+  .get(timelineController.index);
+
+routes.route('/commencedDates')
+  .get(commencedDateController.index)
+  .post(commencedDateController.post);
+
+routes.route('/commencedDates/new')
+  .get(commencedDateController.new);
+
+routes.route('/commencedDates/:id')
+  .get(commencedDateController.id)
+  .put(commencedDateController.put)
+  .delete(commencedDateController.delete);
+
+routes.route('/commencedDates/:id/edit')
+  .get(commencedDateController.edit);
 
 module.exports = routes;
