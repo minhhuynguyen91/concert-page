@@ -84,11 +84,11 @@ routes.route('/commencedDates/new')
   .get(commencedDateController.new);
 
 routes.route('/commencedDates/:id')
-  .id(commencedDateController.id)
-  .delete(commencedDateController.delete)
-  .put(commencedDateController.put);
+  .get(commencedDateController.id)
+  .put(commencedDateController.put)
+  .delete(commencedDateController.delete);
 
 routes.route('/commencedDates/:id/edit')
-  .edit(commencedDateController.edit);
+  .get(commencedDateController.edit);
 
 module.exports = routes;

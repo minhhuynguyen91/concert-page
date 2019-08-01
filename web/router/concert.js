@@ -78,7 +78,7 @@ exports.put = function (req, res) {
     'start_time' : req.body.start_time,
     'end_time' : req.body.end_time,
     'updated_date' : Date.now()
-  }, {new: true})
+  }, {returnNewDocument: true})
 
     .then((concert) => {
       var showdown = require('showdown'),

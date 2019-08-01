@@ -6,11 +6,6 @@ const commencedDateSchema = new mongoose.Schema({
     default: Date.now
   },
   
-  end_date: {
-    type: Date,
-    default: Date.now
-  },
-  
   start_time: {
     type: String,
     default: null
@@ -21,7 +16,7 @@ const commencedDateSchema = new mongoose.Schema({
     default: null
   },
   
-  _concertId: Schema.Types.ObjectId
+  _concertId: mongoose.Schema.Types.ObjectId
   
 });
 

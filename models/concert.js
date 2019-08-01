@@ -46,7 +46,7 @@ const concertSchema = new mongoose.Schema({
     default: null
   },
 
-  commencedDateIds: [Schema.Types.ObjectId],
+  commencedDateIds: [{type: mongoose.Schema.Types.ObjectId}],
 
   created_date: {
     type: Date,
