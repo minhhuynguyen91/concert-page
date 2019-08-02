@@ -13,7 +13,8 @@
           li.timeline-item.bg-black.rounded.ml-3.p-4.shadow
             .timeline-arrow
 
-            h2.h5.mb-0.timelines-title= commencedDate.concertDetail[0].title
+            h2.h5.mb-0.timelines-title 
+              a(href="/concerts/" + commencedDate.concertDetail[0]._id) #{commencedDate.concertDetail[0].title}
 
             span.small.text-gray
               i.fa.fa-clock.mr-1
@@ -25,4 +26,4 @@
               | Thể loại: #{commencedDate.concertDetail[0].note}
               br
               
-            a.btn.btn-primary(href="/concerts/" + commencedDate.concertDetail[0]._id) Xem Vở Diễn
+            
