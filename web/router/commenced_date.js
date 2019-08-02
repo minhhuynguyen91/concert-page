@@ -166,5 +166,29 @@ exports.put = function(req, res) {
 };
 
 exports.delete = function(req, res) {
+  //1 - Remove the related data from the concert
+  //2 - Remove the commenced date
+  const commencedId = mongo.ObjectId(req.params.id);
+  
+  Concert.findOne({commencedDateIds: commencedId})
+    .then((concert) => {
+      try {
+        concert.update({$pull : {commencedDateIds: commencedId}});
+      } catch(err) { console.log('Nothing to remove'); }
+    
+      CommencedDate.deleteOne({'_id' : commencedId})
+      .then((commenced) => {
+        res.redirect('/commencedDates');
+      })
+      .catch((err) => {
+        console.log(err);
+        res.send('Cannot remove commenced date');
+      });
+  })
+    .catch((err) => {
+      console.log(err);
+      res.send('Cannot get the concert data');
+  });
+  
   
 };

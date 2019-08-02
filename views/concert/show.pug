@@ -10,10 +10,14 @@ block content
         h2.concert-title= concert.title
         .concert-ticket Số ghế: #{concert[0].tickets}
 
-        .concert-note Thể loại: #{concert[0].note}
+        .concert-note 
+          | Thể loại: #{concert[0].note}
+          
+        .concert-note.pt-2 
+          | Xuất Diễn :
         ul
         each detail in concert[0].commenceddatesDetails
-          li Xuất Diễn: #{detail.start_time}  - #{moment(detail.start_date).format('DD/MM/YYYY')}
+          li #{detail.start_time}  - #{moment(detail.start_date).format('DD/MM/YYYY')}
 
 
       br      

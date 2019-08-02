@@ -40,9 +40,6 @@ app.use(session({
 
 app.use('/', routes);
 app.use('/concerts', routes);
-// app.use('/concerts/new', routes);
-// app.use('/concerts/:id', routes);
-// app.use('/concerts/:id/edit', routes);
 
 app.use('/login', routes);
 app.use('/logout', routes);
