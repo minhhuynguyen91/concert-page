@@ -7,10 +7,10 @@ block content
         img.img-fluid.card-image-top.concert-photo(src=concert[0].img_link style="width:100%")
 
       .col-lg-12.col-sm-12.pb-2
-        h2.concert-title= concert.title
-        .concert-ticket Số ghế: #{concert[0].tickets}
+        h1.concert-title.text-center= concert[0].title
+        .concert-ticket.pt-2 Số ghế: #{concert[0].tickets}
 
-        .concert-note 
+        .concert-note.pt-2 
           | Thể loại: #{concert[0].note}
           
         .concert-note.pt-2 
