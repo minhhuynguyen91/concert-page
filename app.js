@@ -52,7 +52,6 @@ app.use('/artists', routes);
 app.use('/timelines', routes);
 app.use('/commencedDates', routes);
 
-
 app.locals.moment = require('moment');
 
 // User

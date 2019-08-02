@@ -99,15 +99,24 @@ exports.id = function (req, res) {
   var showdown = require('showdown'),
       converter = new showdown.Converter();
 
-  Concert.findOne( { '_id': objectId} )
-    .then((concert) => {
-      concert.content = converter.makeHtml(concert.content);
-      res.render('concert/show', {concert, session: req.session});
-    })
+  Concert.aggregate([
+    { $match : {_id : objectId} },
+    { $lookup: {
+      from: 'commenceddates',
+      localField: 'commencedDateIds',
+      foreignField: '_id',
+      as: 'commenceddatesDetails'
+    }}
+  ]).then((concert) => {
+    // console.log(concert);
+    concert.content = converter.makeHtml(concert.content);
+    res.render('concert/show', {concert, session: req.session});
+  })
 
     .catch(() => {
       res.send('something went wrong');
     });
+  
 };
 
 exports.delete = function(req, res) {

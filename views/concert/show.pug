@@ -11,6 +11,10 @@ block content
         .concert-ticket Số ghế: #{concert.tickets}
 
         .concert-note Thể loại: #{concert.note}
+        ul
+        each detail in concert[0].commenceddatesDetails
+          li Xuất Diễn: #{detail.start_time}  - #{moment(detail.start_date).format('DD/MM/YYYY')}
+
 
       br      
       .col-lg-12.col-sm-12
