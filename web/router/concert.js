@@ -85,7 +85,7 @@ exports.put = function (req, res) {
       converter = new showdown.Converter();
       concert.content = converter.makeHtml(concert.content);
 
-      res.render('concert/show', {concert, session: req.session});
+      res.redirect('/concerts');
     })
     .catch((err) => {
       console.log(err.stack);
