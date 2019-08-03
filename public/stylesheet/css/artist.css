@@ -12,3 +12,8 @@
   text-align: center;
   font-size: 18px;
 }
+
+.artist-profile-image {
+  height: 40vw;
+  object-fit: cover;
+}
