@@ -5,7 +5,7 @@ const Artist = mongoose.model('Artist');
 const CommencedDate = mongoose.model('CommencedDate');
 
 exports.index = function(req, res) {
-  Concert.find().sort({'start_date': 1})
+  Concert.find().sort({'displayOrder': 1})
     .then((concerts) => {
       Referral.find()
         .then((referrals) => {
@@ -21,7 +21,7 @@ exports.index = function(req, res) {
                     as: 'concertDetail'
                   }
                 }
-              ]).sort({'start_date': 1}).then((commencedDates) => {
+              ]).then((commencedDates) => {
                 res.render('homes/index', {header: 'home', concerts, session: req.session, referrals, artists, commencedDates});
               
               })

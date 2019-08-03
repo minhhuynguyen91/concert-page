@@ -8,7 +8,7 @@ const { body, validationResult } = require('express-validator/check');
 
 
 exports.index = function(req, res) {
-  Concert.find()
+  Concert.find().sort({'displayOrder': 1})
     .then((concerts) => {
       res.render('concert/concerts', {concerts, session: req.session});
     })
@@ -73,10 +73,7 @@ exports.put = function (req, res) {
     'img_link': req.body.img_link,
     'note' : req.body.note,
     'tickets' : req.body.tickets,
-    'start_date' : moment(req.body.start_date, 'DD/MM/YYYY').toDate(),
-    'end_date' : moment(req.body.end_date, 'DD/MM/YYYY').toDate(),
-    'start_time' : req.body.start_time,
-    'end_time' : req.body.end_time,
+    'displayOrder' : req.body.displayOrder,
     'updated_date' : Date.now()
   }, {returnNewDocument: true})
 

@@ -26,7 +26,7 @@ form(action=action method=method)
     )
 
   .form-row
-    .form-group.col-lg-6.col-md-12
+    .form-group.col-lg-4.col-md-12
       label(for="note") Note:
       input.form-control(
         type="text"
@@ -35,7 +35,7 @@ form(action=action method=method)
         value=concert.note
       )
 
-    .form-group.col-lg-6.col-md-12
+    .form-group.col-lg-4.col-md-12
       label(for="tickets") Number of ticket:
       input.form-control(
         type="text"
@@ -44,71 +44,14 @@ form(action=action method=method)
         value=concert.tickets
       )
 
-  .form-row
-    .form-group.col-lg-6.col-md-12
-      label(for="start_date") Start date:
-      #startDatePicker.input-group.date(data-target-input='nearest')
-        input.form-control.datetimepicker-input(
-          type="text"
-          id="start_date"
-          name="start_date"
-          data-target='#startDatePicker'
-          value=moment(concert.start_date).format('DD/MM/YYYY')
-        )
-
-        .input-group-append(data-target='#startDatePicker', data-toggle='datetimepicker')
-          .input-group-text
-            i.fa.fa-calendar
-
-    .form-group.col-lg-6.col-md-12
-      label(for="end_date") End date:
-      #endDatePicker.input-group.date(data-target-input='nearest')
-        input.form-control.datetimepicker-input(
-          type="text"
-          id="end_date"
-          name="end_date"
-          data-target='#endDatePicker'
-          value=moment(concert.end_date).format('DD/MM/YYYY')
-        )
-
-        .input-group-append(data-target='#endDatePicker', data-toggle='datetimepicker')
-          .input-group-text
-            i.fa.fa-calendar
-
-  .form-row
-
-    .form-group.col-lg-6.col-md-12
-      label(for="start_date") Start time:
-      #startTimePicker.input-group.date(data-target-input='nearest')
-
-        input.form-control.datetimepicker-input(
-          type="text"
-          id="start_time"
-          name="start_time"
-          data-target="#startTimePicker"
-          value=concert.start_time
-        ) 
-
-        .input-group-append(data-target='#startTimePicker', data-toggle='datetimepicker')
-          .input-group-text
-            i.fa.fa-clock-o
-
-
-
-    .form-group.col-lg-6.col-md-12
-      label(for="end_time") End time:
-      #endTimePicker.input-group.date(data-target-input='nearest')
-        input.form-control.datetimepicker-input(
-          type="text"
-          id="end_time"
-          name="end_time"
-          data-target="#endTimePicker"
-          value=concert.end_time
-        )
-
-        .input-group-append(data-target='#endTimePicker', data-toggle='datetimepicker')
-          .input-group-text
-            i.fa.fa-clock-o
+    .form-group.col-lg-4.col-md-12
+      label(for="displayOrder") Display order:
+      input.form-control(
+        type="number"
+        id="displayOrder"
+        name="displayOrder"
+        value=concert.displayOrder
+      )
 
 
   button.btn.btn-primary(type="submit" value="Submit") Submit
@@ -120,27 +63,4 @@ script(type="text/javascript").
   var simpleMDE = new SimpleMDE({
     element: $('#content')[0],
     initialValue: newContent
-  });
-
-  $(function () {
-    $('#startDatePicker').datetimepicker({
-      format: 'DD/MM/YYYY',
-      locale: 'vi'
-    });
-
-    $('#endDatePicker').datetimepicker({
-      format: 'DD/MM/YYYY',
-      locale: 'vi'
-    });
-
-    $('#startTimePicker').datetimepicker({
-      format: 'HH:mm',
-      locale: 'vi'
-    });
-
-    $('#endTimePicker').datetimepicker({
-      format: 'HH:mm',
-      locale: 'vi'
-    });
-
   });

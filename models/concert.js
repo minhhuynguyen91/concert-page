@@ -26,25 +26,11 @@ const concertSchema = new mongoose.Schema({
     default: 0
   },
 
-  start_date: {
-    type: Date,
-    default: Date.now
+  displayOrder: {
+    type: Number,
+    default: 0
   },
 
-  start_time: {
-    type: String,
-    default: null
-  },
-
-  end_date: {
-    type: Date,
-    default: Date.now
-  },
-
-  end_time: {
-    type: String,
-    default: null
-  },
 
   commencedDateIds: [{type: mongoose.Schema.Types.ObjectId}],
 
