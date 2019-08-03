@@ -105,7 +105,7 @@ exports.id = function (req, res) {
       as: 'commenceddatesDetails'
     }}
   ]).then((concert) => {
-    Concert.find({'_id': {$ne: concert._id} })
+    Concert.find({'_id': {$ne: objectId} })
       .then((relatedConcerts) => {
         concert.content = converter.makeHtml(concert.content);
         res.render('concert/show', {relatedConcerts, concert, session: req.session});
