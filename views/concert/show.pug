@@ -25,3 +25,25 @@ block content
         h2 Nội Dung
         
         .concert-content.pt-2 !{concert[0].content}
+
+  .container
+    h3.pt-5.text-center(style="text-transform: uppercase;") Xem vở kịch khác
+
+    #carouselRelatedConcert.carousel.slide(data-ride='carousel')
+      .carousel-inner(role="listbox")
+        - var divClass = null
+        each relatedConcert, index in relatedConcerts
+          if (index == 0)
+            - divClass = "carousel-item active"
+          else
+            - divClass = "carousel-item"
+          div(class=divClass)
+
+            .card.mt-4.border-2.text-center
+              img.card-img-top.concert-img-card-display(src=relatedConcert.img_link)
+
+              .card-body.text-center
+                .concert-title-card-display
+                  .card-title 
+                    a(href="/concerts/" + relatedConcert._id) #{relatedConcert.title}
+      

@@ -105,9 +105,16 @@ exports.id = function (req, res) {
       as: 'commenceddatesDetails'
     }}
   ]).then((concert) => {
-    // console.log(concert);
-    concert.content = converter.makeHtml(concert.content);
-    res.render('concert/show', {concert, session: req.session});
+    Concert.find({'_id': {$ne: concert._id} })
+      .then((relatedConcerts) => {
+        concert.content = converter.makeHtml(concert.content);
+        res.render('concert/show', {relatedConcerts, concert, session: req.session});
+      })
+
+      .catch((err) => {
+        console.log(err);
+        res.send('Cannot get other concerts');
+      });
   })
 
     .catch(() => {
