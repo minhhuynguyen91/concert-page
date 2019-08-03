@@ -6,12 +6,12 @@ const Artist = mongoose.model('Artist');
 exports.index = function(req, res) {
   Artist.find()
     .then((artists) => {
-      res.render('artists/artists', {artists, session: req.session})
+      res.render('artists/artists', {artists, session: req.session});
     })
     .catch((err) => {
       console.log(err);
       res.send('Something went wrong in artists page');
-    })
+    });
 };
 
 exports.post = function (req, res) {
@@ -19,12 +19,12 @@ exports.post = function (req, res) {
   const artist = new Artist(req.body);
 
   artist.save()
-    .then(() => {res.redirect('/artists')})
+    .then(() => {res.redirect('/artists');})
     .catch((err) => {
       console.log(err);
       res.send('cannot create an artist');
     });
-}
+};
 
 
 exports.id = function(req, res) {
@@ -34,20 +34,29 @@ exports.id = function(req, res) {
 
   Artist.findOne({'_id' : objectId })
     .then((artist) => {
-      artist.bio = converter.makeHtml(artist.bio);
-      res.render('artists/show', {artist, session: req.session})
+      Artist.find({'_id' : {$ne: artist.objectId} })
+        .then((relatedArtists) => {
+          artist.bio = converter.makeHtml(artist.bio);
+          res.render('artists/show', {artist, relatedArtists,session: req.session});
+        })
+    
+        .catch((err) => {
+          console.log(err);
+          res.send('Cannot get relative artists');
+        
+        });
     })
 
     .catch((err) => {
       console.log(err);
       res.send('Something went wrong in artist bio');
-    })
+    });
 };
 
 exports.new = function(req, res) {
   const artist = {name: '', bio: '', profile_img_link: ''};
   res.render('artists/new', {title: "Add artist's bio", method: 'POST', action: '/artists', artist, session: req.session});
-}
+};
 
 
 exports.edit = function(req, res) {  
@@ -65,15 +74,15 @@ exports.edit = function(req, res) {
         
       }
 
-      res.render('artists/edit', {title: "Update artist's bio content", method: 'POST', action: '/artists/' + objectId + '?_method=put', artist, session: req.session})
+      res.render('artists/edit', {title: "Update artist's bio content", method: 'POST', action: '/artists/' + objectId + '?_method=put', artist, session: req.session});
 
     })
 
     .catch((err) => {
       console.log(err);
       res.send('Cannot get artist edit page');
-    })
-}
+    });
+};
 
 exports.put = function(req, res) {
   const objectId = new mongo.ObjectId(req.params.id);
@@ -96,12 +105,12 @@ exports.put = function(req, res) {
     .catch((err) => {
       console.log(err);
       res.send('cannot update artist page');
-    })
-}
+    });
+};
 
 exports.delete = function(req, res) {
   const objectId = new mongo.ObjectId(req.params.id);
   Artist.deleteOne({'_id' : objectId})
-    .then(() => {res.redirect('/artists')})
-    .catch((err) => {console.log(err)});
-}
+    .then(() => {res.redirect('/artists');})
+    .catch((err) => {console.log(err);});
+};

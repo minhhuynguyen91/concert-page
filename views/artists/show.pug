@@ -9,4 +9,29 @@ block content
       img.img-fluid.artist-profile-image.rounded(src=artist.profile_img_link)
 
     .artist-bio.mt-5 !{artist.bio}
+  
+  .container
+    h3.pt-2.text-center.pb-2(style="text-transform: uppercase;") Xem nghệ sĩ khác
+    
+    #carouselRelatedArtists.carousel.slide.pt-3(data-ride='carousel')
+      .carousel-inner(role="listbox")
+        - var divClass = null
+        each relatedartist, index in relatedArtists
+          if ((index % 4) == 0  )
+            if (index == 0)
+              - divClass = "carousel-item active"
+            else
+              - divClass = "carousel-item "
 
+            div(class=divClass)
+              .row
+                each data, j in relatedArtists
+                  if ((j - index >= 0) && (j -index) < 4)
+                      .col-lg-3.col-sm-6
+                        .card.mt-4.border-0
+                          .artist-image
+                            img.rounded-circle.artist-thumbnail-avatar(src=data.profile_img_link)
+                          .card-body
+                            .artist-name= data.name
+                            .artist-details
+                              a.btn.btn-primary(href="/artists/" + data._id) Xem

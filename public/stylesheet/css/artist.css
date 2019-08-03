@@ -17,3 +17,9 @@
   height: 40vw;
   object-fit: cover;
 }
+
+.artist-thumbnail-avatar {
+  width: 150px; 
+  height: 150px; 
+  object-fit: cover;
+}
