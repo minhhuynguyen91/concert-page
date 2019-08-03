@@ -34,7 +34,7 @@ exports.id = function(req, res) {
 
   Artist.findOne({'_id' : objectId })
     .then((artist) => {
-      Artist.find({'_id' : {$ne: artist.objectId} })
+      Artist.find({'_id' : {$ne: artist._id} })
         .then((relatedArtists) => {
           artist.bio = converter.makeHtml(artist.bio);
           res.render('artists/show', {artist, relatedArtists,session: req.session});
