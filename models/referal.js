@@ -5,6 +5,18 @@ const concertSchema = new mongoose.Schema({
     type: String,
     trim: true,
   },
+
+  thumbnail_image_url: {
+    type: String,
+    default: null
+  },
+
+  displayOrder: {
+    type: Number,
+    default: 0
+  },
+
+
   url: {
     type: String,
     trim: true

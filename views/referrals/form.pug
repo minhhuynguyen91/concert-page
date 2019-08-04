@@ -1,0 +1,40 @@
+form(action=action method="POST")
+  .form-group
+    label(for="title") Title
+    input.form-control(
+      type="text"
+      id="title"
+      name="title"
+      value=referral.title
+    )
+
+  .form-group
+    label(for="thumbnail") Thumbnail image
+    input.form-control(
+      type="text"
+      id="thumbnail_image_url"
+      name="thumbnail_image_url"
+      value=referral.thumbnail_image_url
+    )
+
+  .form-group
+    label(for="Title") Display order
+    input.form-control(
+      type="number"
+      id="displayOrder"
+      name="displayOrder"
+      value=referral.displayOrder
+    )
+  
+  .form-group
+    label(for="Url") Article url
+    input.form-control(
+      type="url"
+      id="url"
+      name="url"
+      value=referral.url
+    )
+
+
+  
+  button.btn.btn-primary(type="submit" value="Submit") Submit

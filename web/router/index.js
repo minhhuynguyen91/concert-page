@@ -69,9 +69,11 @@ routes.route('/referrals/new')
   .get(refController.new);
 
 routes.route('/referrals/:id')
-  // .get(refController.id)
+  .put(refController.put)
   .delete(refController.delete);
 
+routes.route('/referrals/:id/edit')
+  .get(refController.edit);
 
 routes.route('/timelines')
   .get(timelineController.index);
