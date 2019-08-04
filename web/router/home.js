@@ -9,7 +9,7 @@ exports.index = function(req, res) {
     .then((concerts) => {
       Referral.find()
         .then((referrals) => {
-          Artist.find()
+          Artist.find().sort({'displayOrder': 1})
             .then((artists) => {        
               CommencedDate.aggregate([
                 {

@@ -18,6 +18,16 @@ form(action=action method=method)
     )
 
   .form-group
+    label(for="displayOrder") Display order
+    input.form-control(
+      type="number",
+      id="displayOrder",
+      name="displayOrder"
+      value=artist.displayOrder
+    )
+
+
+  .form-group
     label(for="bio") Bio
     textarea.form-control(
       type="text"

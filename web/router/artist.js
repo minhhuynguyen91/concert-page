@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const Artist = mongoose.model('Artist');
 
 exports.index = function(req, res) {
-  Artist.find()
+  Artist.find().sort({'displayOrder' : 1})
     .then((artists) => {
       res.render('artists/artists', {artists, session: req.session});
     })
@@ -15,11 +15,11 @@ exports.index = function(req, res) {
 };
 
 exports.post = function (req, res) {
-  req.body.profile_img_link = (req.body.profile_img_link) ? req.body.profile_img_link : "https://via.placeholder.com/50x50";
+  req.body.profile_img_link = (req.body.profile_img_link) ? req.body.profile_img_link : "https://via.placeholder.com/150x150";
   const artist = new Artist(req.body);
 
   artist.save()
-    .then(() => {res.redirect('/artists');})
+    .then(() => {res.redirect('/');})
     .catch((err) => {
       console.log(err);
       res.send('cannot create an artist');
@@ -90,6 +90,7 @@ exports.put = function(req, res) {
   {
     'name' : req.body.name,
     'profile_img_link' : req.body.profile_img_link,
+    'displayOrder' : req.body.displayOrder,
     'bio' : req.body.bio
 
   }, {new: true})
@@ -98,7 +99,7 @@ exports.put = function(req, res) {
       var showdown = require('showdown'),
       converter = new showdown.Converter();
       artist.bio = converter.makeHtml(artist.bio);
-      res.render('artists/show', {artist, session: req.session});
+      res.redirect('/artists');
 
     })
 

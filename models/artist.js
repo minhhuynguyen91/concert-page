@@ -16,7 +16,6 @@ const artistSchema = new mongoose.Schema({
     default: 0
   },
 
-
   bio: {
     type: String
   }
