@@ -144,7 +144,7 @@ exports.put = function(req, res) {
                         $push: {commencedDateIds : commencedId}
                       })
                       .then(() => {
-                        res.redirect('/');
+                        res.redirect('/commencedDates');
                       })
                       .catch((err) => {
                         console.log(err);
@@ -162,7 +162,7 @@ exports.put = function(req, res) {
                     $push: {commencedDateIds : commencedId}
                   })
                   .then(() => {
-                    res.redirect('/');
+                    res.redirect('/commencedDates');
                   })
                   .catch((err) => {
                     console.log(err);

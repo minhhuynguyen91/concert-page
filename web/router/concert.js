@@ -28,7 +28,7 @@ exports.post = function (req, res) {
   
   const concert = new Concert(req.body);
   concert.save()
-    .then(() => { res.redirect('/'); })
+    .then(() => { res.redirect('/concerts'); })
     .catch((err) => {
       console.log(err.stack);
       res.send('Sorry, something went wrong!'); 
@@ -74,6 +74,7 @@ exports.put = function (req, res) {
     'note' : req.body.note,
     'tickets' : req.body.tickets,
     'displayOrder' : req.body.displayOrder,
+    'seat_image_url' : req.body.seat_image_url,
     'updated_date' : Date.now()
   }, {returnNewDocument: true})
 

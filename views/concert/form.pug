@@ -25,6 +25,16 @@ form(action=action method=method)
       value=concert.img_link
     )
 
+  .form-group
+    label(for="img_link") Seat image url:
+    input.form-control(
+      type="text"
+      id="seat_image_url"
+      name="seat_image_url"
+      value=concert.seat_image_url
+    )
+
+
   .form-row
     .form-group.col-lg-4.col-md-12
       label(for="note") Note:

@@ -31,6 +31,11 @@ const concertSchema = new mongoose.Schema({
     default: 0
   },
 
+  seat_image_url: {
+    type: String,
+    default: null
+  },
+
 
   commencedDateIds: [{type: mongoose.Schema.Types.ObjectId}],
 

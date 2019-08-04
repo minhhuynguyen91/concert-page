@@ -11,6 +11,12 @@ const artistSchema = new mongoose.Schema({
     default: null
   },
 
+  displayOrder: {
+    type: Number,
+    default: 0
+  },
+
+
   bio: {
     type: String
   }
