@@ -119,17 +119,12 @@ exports.put = function(req, res) {
   const commencedId = mongo.ObjectId(req.params.id);
   // Remove the belonged commencedId
   Concert.findOne({commencedDateIds : commencedId})
-    .then((removeCommencedIdconcert) => {
-      try {
-        removeCommencedIdconcert.update({$pull : {commencedDateIds: commencedId}});
-      } catch(err) { console.log('Nothing to remove'); }
-          
+    .then((removeCommencedIdconcert) => {          
         Concert.findOne({'title': req.body.concertName})
           .then((concert) => {
             // Push the current commencedId to new concert
             // Update the data of the commencedDate
             var updatedConcertId = mongo.ObjectId(concert._id);
-            concert.update({ $push: {commencedDateIds : commencedId}});
 
             CommencedDate.findOneAndUpdate({'_id': commencedId}, 
              {
@@ -139,7 +134,41 @@ exports.put = function(req, res) {
                _concertId: updatedConcertId
              }, {returnNewDocument: true})
               .then((commencedDate) => {
-                res.redirect('/commencedDates/');
+                try {
+                  console.log('Remove the id');
+                  removeCommencedIdconcert.update(
+                    {$pull : {commencedDateIds: commencedId}
+                  })
+                    .then(() => {
+                      concert.update({ 
+                        $push: {commencedDateIds : commencedId}
+                      })
+                      .then(() => {
+                        res.redirect('/');
+                      })
+                      .catch((err) => {
+                        console.log(err);
+                        res.send('Cannot update content')
+                      });
+                    })
+                    .catch((err) => {
+                      console.log(err);
+                      res.send('Cannot remove content')
+                    });
+
+                } catch(err) { 
+                  console.log('Nothing to remove'); 
+                  concert.update({ 
+                    $push: {commencedDateIds : commencedId}
+                  })
+                  .then(() => {
+                    res.redirect('/');
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                    res.send('Cannot update content')
+                  });
+                }
               })
 
               .catch((err) => {
