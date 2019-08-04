@@ -23,8 +23,21 @@
 
 .seat-concert-image {
   height: 25vw;
-  
 }
+
+.concert-relative-img {
+  width: 100%;
+  height: 10vw;
+  object-fit: cover;
+}
+
+.concert-photo {
+  width: 100%;
+  height: 50vw;
+  object-fit: cover;
+}
+
+
 
 /* .concert-img-card-display {
   width: 100%;

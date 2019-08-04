@@ -26,7 +26,7 @@ block content
         
         .concert-content.pt-2 !{concert[0].content}
 
-  .container 
+  .container
     - var seat_image_link = (concert[0].seat_image_url != "") ? concert[0].seat_image_url : "https://via.placeholder.com/700x500";
 
   .container
@@ -48,15 +48,17 @@ block content
           else
             - divClass = "carousel-item"
           div(class=divClass)
+            .row
+              .col-lg-4.col-sm-4
+              .col-lg-4.col-sm-4
+                .card.mt-4.border-2.text-center
+                  img.card-img-top.mx-auto.d-block.concert-relative-img(src=relatedConcert.img_link)
 
-            .card.mt-4.border-2.text-center
-              img.card-img-top.concert-img-card-display(src=relatedConcert.img_link)
-
-              .card-body.text-center
-                .concert-title-card-display
-                  .card-title 
-                    a(href="/concerts/" + relatedConcert._id) #{relatedConcert.title}
-      
+                  .card-body.text-center
+                    .concert-title-card-display
+                      .card-title 
+                        a(href="/concerts/" + relatedConcert._id) #{relatedConcert.title}
+        
       a.carousel-control-prev.btn-floating.light-blue.darken-4(href='#carouselRelatedConcert', role='button', data-slide='prev')
         span.carousel-control-prev-icon(aria-hidden='true')
         span.sr-only Previous
