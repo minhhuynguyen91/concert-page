@@ -7,7 +7,7 @@ const CommencedDate = mongoose.model('CommencedDate');
 exports.index = function(req, res) {
   Concert.find().sort({'displayOrder': 1})
     .then((concerts) => {
-      Referral.find()
+      Referral.find().sort({'displayOrder': 1})
         .then((referrals) => {
           Artist.find().sort({'displayOrder': 1})
             .then((artists) => {        

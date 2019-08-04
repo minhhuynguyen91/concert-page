@@ -50,3 +50,11 @@
 .carousel-control-prev {
     filter: invert(100%);
 }
+
+
+.referral-image-thumbnail {
+  width: 100%;
+  height: 15vw;
+  object-fit: cover; 
+
+}
