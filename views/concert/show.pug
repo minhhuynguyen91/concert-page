@@ -49,8 +49,8 @@ block content
             - divClass = "carousel-item"
           div(class=divClass)
             .row
-              .col-lg-4.col-sm-4
-              .col-lg-4.col-sm-4
+              .col-lg-2.col-sm-2
+              .col-lg-8.col-sm-8
                 .card.mt-4.border-2.text-center
                   img.card-img-top.mx-auto.d-block.concert-relative-img(src=relatedConcert.img_link)
 
@@ -58,6 +58,7 @@ block content
                     .concert-title-card-display
                       .card-title 
                         a(href="/concerts/" + relatedConcert._id) #{relatedConcert.title}
+              .col-lg-2.col-sm-2
         
       a.carousel-control-prev.btn-floating.light-blue.darken-4(href='#carouselRelatedConcert', role='button', data-slide='prev')
         span.carousel-control-prev-icon(aria-hidden='true')
