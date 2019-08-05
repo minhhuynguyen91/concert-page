@@ -148,12 +148,12 @@ exports.put = function(req, res) {
                       })
                       .catch((err) => {
                         console.log(err);
-                        res.send('Cannot update content')
+                        res.send('Cannot update content');
                       });
                     })
                     .catch((err) => {
                       console.log(err);
-                      res.send('Cannot remove content')
+                      res.send('Cannot remove content');
                     });
 
                 } catch(err) { 
@@ -202,17 +202,32 @@ exports.delete = function(req, res) {
   Concert.findOne({commencedDateIds: commencedId})
     .then((concert) => {
       try {
-        concert.update({$pull : {commencedDateIds: commencedId}});
-      } catch(err) { console.log('Nothing to remove'); }
-    
-      CommencedDate.deleteOne({'_id' : commencedId})
-      .then((commenced) => {
-        res.redirect('/commencedDates');
-      })
-      .catch((err) => {
-        console.log(err);
-        res.send('Cannot remove commenced date');
-      });
+        concert.update({$pull : {commencedDateIds: commencedId}})
+          .then(() => {
+            CommencedDate.deleteOne({'_id' : commencedId})
+              .then((commenced) => {
+                res.redirect('/commencedDates');
+              })
+              .catch((err) => {
+                console.log(err);
+                res.send('Cannot remove commenced date');
+              });
+          })
+          .catch((err) => {
+            console.log(err);
+            res.send('Cannot update the concert');
+          });
+      } catch(err) { 
+        console.log('Nothing to remove'); 
+        CommencedDate.deleteOne({'_id' : commencedId})
+          .then((commenced) => {
+            res.redirect('/commencedDates');
+        })
+          .catch((err) => {
+            console.log(err);
+            res.send('Cannot remove commenced date');
+        });  
+      }
   })
     .catch((err) => {
       console.log(err);

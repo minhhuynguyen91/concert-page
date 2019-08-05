@@ -4,7 +4,7 @@ block content
   .container
     .row
       .col-lg-12.col-sm-12
-        img.img-fluid.card-image-top.concert-photo(src=concert[0].img_link style="width:100%")
+        img.concert-photo(src=concert[0].img_link)
 
       .col-lg-12.col-sm-12.pb-2
         h1.concert-title.text-center= concert[0].title
@@ -37,7 +37,7 @@ block content
         img.img-fluid.seat-concert-img(src=seat_image_link)
         
   .container
-    h3.pt-5.text-center(style="text-transform: uppercase;") Xem vở kịch khác
+    h3.pt-5.text-center(style="text-transform: uppercase;") Xem vở diễn khác
 
     #carouselRelatedConcert.carousel.slide(data-ride='carousel')
       .carousel-inner(role="listbox")
