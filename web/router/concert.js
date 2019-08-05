@@ -2,6 +2,8 @@ var mongo = require('mongodb');
 const mongoose = require('mongoose');
 
 const Concert = mongoose.model('Concert');
+const CommencedDate = mongoose.model('CommencedDate');
+
 const moment = require('moment');
 
 const { body, validationResult } = require('express-validator/check');
@@ -123,10 +125,32 @@ exports.id = function (req, res) {
     });
   
 };
+// 1 - delete many dependants
+// 2 - delete the concert
 
 exports.delete = function(req, res) {
   const objectId = new mongo.ObjectId(req.params.id);
-  Concert.deleteOne( { '_id' : objectId } )
-    .then(() => { res.redirect('/concerts'); })
+  Concert.findOne( { '_id' : objectId } )
+    .then((concert) => {
+      CommencedDate.deleteMany({ 
+        '_id'  : { $in : concert.commencedDateIds}
+      })
+        .then(() => {
+          Concert.deleteOne({'_id' : objectId})
+          .then(() => {
+            res.redirect('/');
+          })
+
+          .catch((err) => {
+            console.log(err);
+            res.send('Cannot delete the concert');
+          })
+        })
+
+        .catch((err) => {
+          console.log(err);
+          res.send('Cannot remove the dependants');
+        });
+  })
     .catch((err) => {console.log(err.stack); });
 };
