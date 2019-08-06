@@ -6,21 +6,8 @@ block content
       img.img-fluid(src="stylesheet/image/banner_image.jpg")
 
 
-  .container
-    section.text-center.my-5
-      h2.h1-responsive.font-weight-bold.my-5(style="text-transform: uppercase;") Vở diễn sắp trình diễn 
-
-    .row
-      each concert in concerts
-        .col-sm-12.col-lg-6
-          .card.mt-4.border-2.text-center
-            a(href="/concerts/" + concert._id)
-              img.card-img-top.concert-img-card-display(src=concert.img_link)
-                
-            .card-body.text-center
-              .concert-title-card-display
-                .card-title 
-                  a(href="/concerts/" + concert._id) #{concert.title}
+  include concerts
+  
   include timelines
 
   include referrals
