@@ -1,22 +1,24 @@
 extends ../layouts/layout
 
 block content
+  - console.log(concert)
+
   .container
     .row
       .col-lg-12.col-sm-12
-        img.concert-photo(src=concert[0].img_link)
+        img.concert-photo(src=concert.img_link)
 
       .col-lg-12.col-sm-12.pb-2
-        h1.concert-title.text-center= concert[0].title
-        .concert-ticket.pt-2 Số ghế: #{concert[0].tickets}
+        h1.concert-title.text-center= concert.title
+        .concert-ticket.pt-2 Số ghế: #{concert.tickets}
 
         .concert-note.pt-2 
-          | Thể loại: #{concert[0].note}
+          | Thể loại: #{concert.note}
           
         .concert-note.pt-2 
           | Xuất Diễn :
         ul
-        each detail in concert[0].commenceddatesDetails
+        each detail in concert.commenceddatesDetails
           li #{detail.start_time}  - #{moment(detail.start_date).format('DD/MM/YYYY')}
 
 
@@ -25,10 +27,10 @@ block content
       .col-lg-12.col-sm-12
         h2 Nội Dung
         
-    .concert-content.pt-2 !{concert[0].content}
+    .concert-content.pt-2 !{concert.content}
 
   .container
-    - var seat_image_link = (concert[0].seat_image_url != "") ? concert[0].seat_image_url : "https://via.placeholder.com/700x500";
+    - var seat_image_link = (concert.seat_image_url != "") ? concert.seat_image_url : "https://via.placeholder.com/700x500";
 
   .container
     h2.pt-2.text-center(style="text-transform: capitalize") Sơ đồ ghế ngồi 

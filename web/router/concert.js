@@ -110,8 +110,8 @@ exports.id = function (req, res) {
   ]).then((concert) => {
     Concert.find({'_id': {$ne: objectId} })
       .then((relatedConcerts) => {
-        concert.content = converter.makeHtml(concert.content);
-        res.render('concert/show', {relatedConcerts, concert, session: req.session});
+        concert[0].content = converter.makeHtml(concert[0].content);
+        res.render('concert/show', {relatedConcerts, concert: concert[0], session: req.session});
       })
 
       .catch((err) => {
