@@ -40,7 +40,7 @@ exports.post = function(req, res) {
 
 
 exports.edit = function(req, res) {
-  const objectId = req.params.id;
+  const objectId = new mongo.ObjectId(req.params.id);
   ReferralVideo.findOne({'_id' : objectId})
     .then((referralVideo) => {
       res.render('referralVideo/new', 
@@ -81,7 +81,7 @@ exports.put = function(req, res) {
 
 
 exports.delete = function(req, res) {
-  const objectId = new mongo.objectId(req.params.id);
+  const objectId = new mongo.ObjectId(req.params.id);
   ReferralVideo.deleteOne({'_id' : objectId})
     .then(() => {
       res.redirect('/referralVideos');
