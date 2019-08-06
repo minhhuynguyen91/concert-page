@@ -27,9 +27,7 @@ exports.new = function(req, res) {
 exports.post = function(req, res) {
   if (req.body.srcType == "Youtube") {
     req.body.url = req.body.url.replace('watch?v=', 'embed/');
-  } else {
-
-  }
+  } 
 
   const referralVideo = new ReferralVideo(req.body)
   referralVideo.save()
@@ -61,18 +59,14 @@ exports.edit = function(req, res) {
 exports.put = function(req, res) {
   const objectId = new mongo.ObjectId(req.params.id);
   if (req.body.srcType == "Youtube") {
-    req.body.srcType = req.body.srcType.replace(/watch\?=/i, "\\/embed\\/")
-  } else {
-
-  }
-
-
+    req.body.url = req.body.url.replace('watch?v=', 'embed/')
+  } 
 
   ReferralVideo.findOneAndUpdate({'_id' : objectId},
   {
-    'title' : req.params.title,
-    'srcType' : req.params.srcType,
-    'url' : req.params.url
+    'title' : req.body.title,
+    'srcType' : req.body.srcType,
+    'url' : req.body.url
 
   }, {returnNewDocument: true})
     .then((referralVideo) => {

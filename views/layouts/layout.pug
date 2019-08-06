@@ -18,6 +18,10 @@ html
     // link(rel='stylesheet', type='text/css', href='/fontawesome/css/all.min.css')    
 
   body
+    #fb-root
+    script(async='', defer='', crossorigin='anonymous', src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v4.0&appId=#{FB_APP_ID}&autoLogAppEvents=1")
+
+
     include ../common/navbar
 
     block content

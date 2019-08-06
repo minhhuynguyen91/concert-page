@@ -1,3 +1,4 @@
+const config = require('./config/web/server');
 const express = require('express');
 const app = express();
 const routes = require('./web/router/index');
@@ -52,6 +53,7 @@ app.use('/referralVideos', routes);
 
 
 app.locals.moment = require('moment');
+app.locals.FB_APP_ID = config.FACEBOOK_APP_ID;
 
 // User
 app.use(cookieParser());

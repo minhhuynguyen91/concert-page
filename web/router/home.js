@@ -3,6 +3,8 @@ const Concert = mongoose.model('Concert');
 const Referral = mongoose.model('Referral');
 const Artist = mongoose.model('Artist');
 const CommencedDate = mongoose.model('CommencedDate');
+const ReferralVideo = mongoose.model('ReferralVideo');
+
 
 exports.index = function(req, res) {
   Concert.find().sort({'displayOrder': 1})
@@ -10,26 +12,35 @@ exports.index = function(req, res) {
       Referral.find().sort({'displayOrder': 1})
         .then((referrals) => {
           Artist.find().sort({'displayOrder': 1})
-            .then((artists) => {        
-              CommencedDate.aggregate([
-                {
-                  $lookup:
+            .then((artists) => {
+              ReferralVideo.find().sort({'srcType' : 1})
+                .then((referralVideos) => {
+                  CommencedDate.aggregate([
                   {
-                    from: 'concerts',
-                    localField: '_concertId',
-                    foreignField: '_id',
-                    as: 'concertDetail'
+                      $lookup:
+                      {
+                        from: 'concerts',
+                        localField: '_concertId',
+                        foreignField: '_id',
+                        as: 'concertDetail'
+                      }
                   }
-                }
-              ]).sort({'start_date': 1}).then((commencedDates) => {
-                res.render('homes/index', {header: 'home', concerts, session: req.session, referrals, artists, commencedDates});
-              
-              })
-              .catch((err) => {
-                console.log(err);
-                res.send('Cannot get commencedDates');
-              });
-            
+                  ]).sort({'start_date': 1}).then((commencedDates) => {
+                    res.render('homes/index', 
+                    { header: 'home', concerts, session: req.session, 
+                      referrals, artists, commencedDates,
+                      referralVideos
+                    });
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                    res.send('Cannot get commencedDates');
+                  });
+                })
+                .catch((err) => {
+                  console.log(err);
+                  res.send('Cannot get the referral Video');
+                })
             })
             .catch((err) => {
               console.log(err);
