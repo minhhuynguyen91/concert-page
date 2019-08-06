@@ -12,6 +12,8 @@ var refController = require('./referrals');
 var artistController = require('./artist');
 var timelineController = require('./timeline');
 var commencedDateController = require('./commenced_date');
+var referralVideoController = require('./referral_video');
+
 
 routes.route('/')
   .get(homeController.index);
@@ -92,5 +94,24 @@ routes.route('/commencedDates/:id')
 
 routes.route('/commencedDates/:id/edit')
   .get(commencedDateController.edit);
+
+
+routes.route('/referralVideos')
+  .get(referralVideoController.index)
+  .post(referralVideoController.post);
+
+routes.route('/referralVideos/new')
+  .get(referralVideoController.new);
+
+
+routes.route('/referralVideos/:id')
+  .get(referralVideoController.id)
+  .put(referralVideoController.put)
+  .delete(referralVideoController.delete);
+
+
+routes.route('/referralVideos/:id/edit')
+  .get(referralVideoController.edit);
+
 
 module.exports = routes;

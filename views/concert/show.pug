@@ -25,8 +25,7 @@ block content
       .col-lg-12.col-sm-12
         h2 Nội Dung
         
-        .concert-content.pt-2 
-          | !{concert[0].content}
+    .concert-content.pt-2 !{concert[0].content}
 
   .container
     - var seat_image_link = (concert[0].seat_image_url != "") ? concert[0].seat_image_url : "https://via.placeholder.com/700x500";

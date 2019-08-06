@@ -1,0 +1,27 @@
+form(action=action method="POST")
+  .form-group
+    label(for="title") Title
+    input.form-control(
+      type="text",
+      id="title",
+      name="title"
+      value=referralVideo.title
+    )
+
+  .form-group
+    label(for="srcType") Source Type
+    select#srcType.custom-select.mr-sm-2(name='srcType')
+      option(select='1') Youtube
+      option(select='2') Facebook
+
+
+  .form-group
+    label(for="url") Link
+    input.form-control(
+      type="url",
+      id="url",
+      name="url"
+      value=referralVideo.url
+    )
+
+  button.btn.btn-primary(type="submit" value="Submit") Submit
