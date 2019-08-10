@@ -8,7 +8,10 @@ var methodOverride = require('method-override');
 
 var cookieParser = require('cookie-parser');
 const session = require('express-session');
+const redis_client = require('./config/web/redis')
 
+
+app.locals.redis_client = redis_client;
 
 app.set('views', path.join(__dirname + '/views'));
 app.set('view engine', 'pug');
