@@ -13,6 +13,7 @@ var artistController = require('./artist');
 var timelineController = require('./timeline');
 var commencedDateController = require('./commenced_date');
 var referralVideoController = require('./referral_video');
+var concertNewsController = require('./concertNews');
 
 
 routes.route('/')
@@ -112,6 +113,24 @@ routes.route('/referralVideos/:id')
 
 routes.route('/referralVideos/:id/edit')
   .get(referralVideoController.edit);
+
+
+routes.route('/concertNews')
+  .get(concertNewsController.index)
+  .post(concertNewsController.post);
+
+routes.route('/concertNews/new')
+  .get(concertNewsController.new);
+
+
+routes.route('/concertNews/:id')
+  .get(concertNewsController.id)
+  .put(concertNewsController.put)
+  .delete(concertNewsController.delete);
+
+
+routes.route('/concertNews/:id/edit')
+  .get(concertNewsController.edit);
 
 
 module.exports = routes;

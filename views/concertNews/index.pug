@@ -1,0 +1,18 @@
+extends ../layouts/layout
+
+block content
+  .container
+    h2.pt-2 Tin tức nhà hát
+    
+    each concertNews in concertNewsIndex
+      .col-sm-12.col-lg-6
+        .card.mt-4
+          .card-body
+            .card-title.text-center
+              a(href="/concertNews/" + concertNews._id)
+                h3= concertNews.title
+
+            if session.userId
+              a.btn.btn-primary(href="/concertNews/" + concertNews._id + "/edit") Edit
+              form(action="/concertNews/" + concertNews._id + "?_method=delete" method="post")
+                button.btn.btn-danger.mt-1(type="submit" value="Submit" onclick="return confirm('Are you sure to delete?')" ) Delete

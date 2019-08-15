@@ -1,0 +1,16 @@
+extends ../layouts/layout
+
+block content
+  .container.pt-2.pb-2
+    .row
+      each newsImageLink in newsImageLinks
+        .col-lg-6.col-sm-12.pt-2
+          img.img-fluid.imgNews(src=newsImageLink)
+    
+    
+    h2.text-center= concertNews.title
+      
+    h3.pt-2.pb-1 Nội Dung
+    
+    p
+     | !{concertNews.content}

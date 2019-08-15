@@ -1,0 +1,52 @@
+form(action=action method='POST')
+  .form-group
+    label(for="name") Title
+    input.form-control(
+      type="text",
+      id="title",
+      name="title",
+      value=concertNews.title
+      required
+    )
+  
+  .form-row
+    .form-group.col-lg-4.col-sm-12
+      label(for="name") Display Order
+      input.form-control(
+        type="number",
+        id="displayOrder",
+        name="displayOrder",
+        value=concertNews.displayOrder
+      )    
+    
+  .form-group
+    label(for="name") Images link (separate by semicolon ";" )
+    textarea.form-control(
+      type="text",
+      id="img_link",
+      name="img_link"
+      rows=5
+      required
+    )
+    
+  .form-group
+    label(for="content") Content
+    textarea.form-control(
+      type="text",
+      id="concertNewsContent",
+      name="content",
+      value=concertNews.content
+    )
+
+  button.btn.btn-primary(type="submit" value="Submit") Submit
+
+script(type="text/javascript").
+  var newContent = `!{concertNews.content}`
+  var defaultImageLink = `!{concertNews.img_link}`
+  
+  $("#img_link").html(defaultImageLink);
+  
+  var simpleMDE = new SimpleMDE({
+    element: $('#concertNewsContent')[0],
+    initialValue: newContent
+  });

@@ -19,6 +19,7 @@ require('./models/referral_video');
 require('./models/user');
 require('./models/artist');
 require('./models/commenced_date');
+require('./models/concertNews');
 
 //require('./config/web/passport');
 
