@@ -4,6 +4,7 @@ const Referral = mongoose.model('Referral');
 const Artist = mongoose.model('Artist');
 const CommencedDate = mongoose.model('CommencedDate');
 const ReferralVideo = mongoose.model('ReferralVideo');
+const ConcertNews = mongoose.model('ConcertNews');
 
 
 exports.index = function(req, res) {
@@ -11,41 +12,48 @@ exports.index = function(req, res) {
     .then((concerts) => {
       Referral.find().sort({'displayOrder': 1})
         .then((referrals) => {
-          Artist.find().sort({'displayOrder': 1})
-            .then((artists) => {
-              ReferralVideo.find().sort({'srcType' : 1})
-                .then((referralVideos) => {
-                  CommencedDate.aggregate([
-                  {
-                      $lookup:
+          ConcertNews.find().sort({'displayOrder' : 1})
+            .then((concertNewsIndex) => {
+              Artist.find().sort({'displayOrder': 1})
+                .then((artists) => {
+                  ReferralVideo.find().sort({'srcType' : 1})
+                    .then((referralVideos) => {
+                      CommencedDate.aggregate([
                       {
-                        from: 'concerts',
-                        localField: '_concertId',
-                        foreignField: '_id',
-                        as: 'concertDetail'
+                          $lookup:
+                          {
+                            from: 'concerts',
+                            localField: '_concertId',
+                            foreignField: '_id',
+                            as: 'concertDetail'
+                          }
                       }
-                  }
-                  ]).sort({'start_date': 1, 'start_time': 1}).then((commencedDates) => {
-                    res.render('homes/index', 
-                    { header: 'home', concerts, session: req.session, 
-                      referrals, artists, commencedDates,
-                      referralVideos
-                    });
-                  })
-                  .catch((err) => {
-                    console.log(err);
-                    res.send('Cannot get commencedDates');
-                  });
+                      ]).sort({'start_date': 1, 'start_time': 1}).then((commencedDates) => {
+                        res.render('homes/index', 
+                        { header: 'home', concerts, session: req.session, 
+                          referrals, artists, commencedDates,
+                          referralVideos, concertNewsIndex
+                        });
+                      })
+                      .catch((err) => {
+                        console.log(err);
+                        res.send('Cannot get commencedDates');
+                      });
+                    })
+                    .catch((err) => {
+                      console.log(err);
+                      res.send('Cannot get the referral Video');
+                    })
                 })
                 .catch((err) => {
                   console.log(err);
-                  res.send('Cannot get the referral Video');
-                })
+                  res.send('Cannot get the artists');
+                });
             })
             .catch((err) => {
               console.log(err);
-              res.send('Cannot get the artists');
-            });
+              res.send('Cannot get the theater news');
+            })
         })
 
         .catch((err) => {

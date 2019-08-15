@@ -24,6 +24,7 @@ nav.navbar.navbar-expand-lg.navbar-light.navbar-custom
         a#userDropDownMenu.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
           | Tin tức
         .dropdown-menu(aria-labelledby='userDropDownMenu')
+          a.dropdown-item(href='/concertNews') Tin tức sân khấu
           a.dropdown-item(href='/referrals') Tin tức ngoài sân khấu
           a.dropdown-item(href='/referralVideos') Video
           
@@ -37,7 +38,8 @@ nav.navbar.navbar-expand-lg.navbar-light.navbar-custom
           .dropdown-menu(aria-labelledby='userDropDownMenu')
             a.dropdown-item(href='/concert/new') Tạo vở diễn
             a.dropdown-item(href='/commencedDates/new') Tạo xuất diễn
-            a.dropdown-item(href='/referrals/new') Tạo tin tức liên quan
+            a.dropdown-item(href='/concertNews/new') Tạo tin tức sân khấu
+            a.dropdown-item(href='/referrals/new') Tạo tin tức ngoài sân khấu
             a.dropdown-item(href='/referralVideos/new') Tạo video
             a.dropdown-item(href='/artists/new') Tạo nghệ sĩ
         li.nav-item

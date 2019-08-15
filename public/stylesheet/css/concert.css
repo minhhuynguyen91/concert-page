@@ -28,7 +28,7 @@
 
 .concert-relative-img {
   width: 100%;
-  height: 50vw;
+  height: 40vw;
   object-fit: contain;
 }
 
@@ -99,7 +99,7 @@ and (orientation : portrait) {
 and (min-width : 1224px) {
   .concert-img-card-display {
     width: 100%;
-    height: 40vw;
+    height: 30vw;
     object-fit: contain;
   }
     /* Styles */
@@ -111,7 +111,7 @@ and (min-width : 1824px) {
     /* Styles */
   .concert-img-card-display {
     width: 100%;
-    height: 40vw;
+    height: 30vw;
     object-fit: contain;
   }  
 }
