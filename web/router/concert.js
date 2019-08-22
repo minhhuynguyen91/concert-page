@@ -81,9 +81,8 @@ exports.put = function (req, res) {
   }, {returnNewDocument: true})
 
     .then((concert) => {
-      var showdown = require('showdown'),
-      converter = new showdown.Converter();
-      concert.content = converter.makeHtml(concert.content);
+      var marked = require('marked');
+      concert.content = marked(concert.content);
 
       res.redirect('/concerts');
     })
@@ -96,8 +95,7 @@ exports.put = function (req, res) {
 
 exports.id = function (req, res) {
   const objectId = new mongo.ObjectId(req.params.id);
-  var showdown = require('showdown'),
-      converter = new showdown.Converter();
+  var marked = require('marked')
 
   Concert.aggregate([
     { $match : {_id : objectId} },
@@ -110,7 +108,7 @@ exports.id = function (req, res) {
   ]).then((concert) => {
     Concert.find({'_id': {$ne: objectId} })
       .then((relatedConcerts) => {
-        concert[0].content = converter.makeHtml(concert[0].content);
+        concert[0].content = marked(concert[0].content);
         res.render('concert/show', {relatedConcerts, concert: concert[0], session: req.session});
       })
 

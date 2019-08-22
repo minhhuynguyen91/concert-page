@@ -45,13 +45,12 @@ exports.index = function(req, res) {
 
 exports.id = function(req, res) {
   const objectId = new mongo.ObjectId(req.params.id);
-  var showdown = require('showdown'),
-  converter = new showdown.Converter();
+  var marked = require('marked');
   
   ConcertNews.findOne({'_id' : objectId})
     .then((concertNews) => {
       var newsImageLinks = concertNews.img_link.split(";").filter(String);
-      concertNews.content = converter.makeHtml(concertNews.content);
+      concertNews.content = marked(concertNews.content);
       res.render('concertNews/show', 
       {
         session: req.session,

@@ -29,14 +29,13 @@ exports.post = function (req, res) {
 
 exports.id = function(req, res) {
   const objectId = new mongo.ObjectId(req.params.id);
-  var showdown = require('showdown'),
-  converter = new showdown.Converter();
+  var marked = require('marked');
 
   Artist.findOne({'_id' : objectId })
     .then((artist) => {
       Artist.find({'_id' : {$ne: artist._id} })
         .then((relatedArtists) => {
-          artist.bio = converter.makeHtml(artist.bio);
+          artist.bio = marked(artist.bio);
           res.render('artists/show', {artist, relatedArtists,session: req.session});
         })
     
@@ -96,9 +95,8 @@ exports.put = function(req, res) {
   }, {new: true})
 
     .then((artist) => {
-      var showdown = require('showdown'),
-      converter = new showdown.Converter();
-      artist.bio = converter.makeHtml(artist.bio);
+      var marked = require('marked');
+      artist.bio = marked(artist.bio);
       res.redirect('/artists');
 
     })
