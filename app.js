@@ -57,7 +57,7 @@ app.use('/concertNews', routes);
 
 
 app.locals.moment = require('moment');
-app.locals.FB_APP_ID = config.FACEBOOK_APP_ID;
+
 
 // User
 app.use(cookieParser());

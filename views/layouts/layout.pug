@@ -19,11 +19,21 @@ html
 
   body.body-mobile
     #fb-root
-    script(async='', defer='', crossorigin='anonymous', src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v4.0&appId=#{FB_APP_ID}&autoLogAppEvents=1")
-
+    script(async='', defer='', crossorigin='anonymous', src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v4.0&appId=369648133723010&autoLogAppEvents=1")
+    script.      
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    
 
     include ../common/navbar
 
     block content
 
+    // .fb-customerchat(page_id="1864248040349964")
+    
     include ../common/footer
