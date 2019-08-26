@@ -39,6 +39,25 @@ and (max-device-width : 480px) {
   .dropdown-item {
     font-size: 3.5vw;
   }
+  
+  .timelines-title {
+    font-size: 3.5vw;
+  }
+  .concertNews-title {
+    font-size: 3.5vw;
+  }
+  
+  .referralNews-title {
+    font-size: 2.8vw;
+  }
+  
+  .artist-name {
+    font-size: 3.5vw;
+  }
+  
+  .concert-title {
+    font-size: 3.5vw;
+  }
 }
 
 
