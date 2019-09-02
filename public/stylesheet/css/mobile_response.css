@@ -3,6 +3,13 @@ and (min-device-width : 320px)
 and (max-device-width : 480px) {
     /* Styles */
   /* Concert page */
+  .concert-marquee-image {
+    height: 40vw;
+    object-fit: cover;
+    display: inline-block;
+    padding: 1vw;
+  }
+  
   
   .concert-ticket {
     font-size: 3.5vw;

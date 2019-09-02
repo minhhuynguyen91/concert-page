@@ -1,6 +1,6 @@
 .image-banner {
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
+  object-fit: contain;
+  height: auto;
 }
 
 .related-event {
@@ -57,4 +57,12 @@
   height: 25vw;
   object-fit: cover; 
 
+}
+
+
+.concert-marquee-image {
+  height: 20vw;
+  object-fit: cover;
+  display: inline-block;
+  padding: 1vw;
 }
