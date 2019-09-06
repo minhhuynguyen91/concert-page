@@ -23,7 +23,7 @@ routes.route('/contact')
   .get(homeController.contact);
 
 routes.route('/concert/new')
-  .get(concertController.new);
+  .get(authController.authorization, concertController.new);
 
 routes.route('/concerts')
   .get(concertController.index)
@@ -31,27 +31,27 @@ routes.route('/concerts')
 
 routes.route('/concerts/:id') 
   .get(concertController.id)
-  .put(concertController.put)
-  .delete(concertController.delete);
+  .put(authController.authorization, concertController.put)
+  .delete(authController.authorization, concertController.delete);
 
 routes.route('/concerts/:id/edit')
-  .get(concertController.edit);
+  .get(authController.authorization, concertController.edit);
 
 
 routes.route('/artists')
   .get(artistController.index)
-  .post(artistController.post);
+  .post(authController.authorization, artistController.post);
 
 routes.route('/artists/new')
-  .get(artistController.new);
+  .get(authController.authorization, artistController.new);
 
 routes.route('/artists/:id')
   .get(artistController.id)
-  .put(artistController.put)
-  .delete(artistController.delete);
+  .put(authController.authorization, artistController.put)
+  .delete(authController.authorization, artistController.delete);
 
 routes.route('/artists/:id/edit')
-  .get(artistController.edit);
+  .get(authController.authorization, artistController.edit);
 
 
 routes.route('/login') 
@@ -62,75 +62,75 @@ routes.route('/logout')
   .get(authController.logout);
 
 routes.route('/user')
-  .post(userController.create);
+  .post(authController.authorization, userController.create);
 
 routes.route('/referrals')
-  .post(refController.post)
+  .post(authController.authorization, refController.post)
   .get(refController.index);
 
 routes.route('/referrals/new')
   .get(refController.new);
 
 routes.route('/referrals/:id')
-  .put(refController.put)
-  .delete(refController.delete);
+  .put(authController.authorization, refController.put)
+  .delete(authController.authorization, refController.delete);
 
 routes.route('/referrals/:id/edit')
-  .get(refController.edit);
+  .get(authController.authorization, refController.edit);
 
 routes.route('/timelines')
   .get(timelineController.index);
 
 routes.route('/commencedDates')
   .get(commencedDateController.index)
-  .post(commencedDateController.post);
+  .post(authController.authorization, commencedDateController.post);
 
 routes.route('/commencedDates/new')
   .get(commencedDateController.new);
 
 routes.route('/commencedDates/:id')
   .get(commencedDateController.id)
-  .put(commencedDateController.put)
-  .delete(commencedDateController.delete);
+  .put(authController.authorization, commencedDateController.put)
+  .delete(authController.authorization, commencedDateController.delete);
 
 routes.route('/commencedDates/:id/edit')
-  .get(commencedDateController.edit);
+  .get(authController.authorization, commencedDateController.edit);
 
 
 routes.route('/referralVideos')
   .get(referralVideoController.index)
-  .post(referralVideoController.post);
+  .post(authController.authorization, referralVideoController.post);
 
 routes.route('/referralVideos/new')
-  .get(referralVideoController.new);
+  .get(authController.authorization, referralVideoController.new);
 
 
 routes.route('/referralVideos/:id')
   .get(referralVideoController.id)
-  .put(referralVideoController.put)
-  .delete(referralVideoController.delete);
+  .put(authController.authorization, referralVideoController.put)
+  .delete(authController.authorization, referralVideoController.delete);
 
 
 routes.route('/referralVideos/:id/edit')
-  .get(referralVideoController.edit);
+  .get(authController.authorization, referralVideoController.edit);
 
 
 routes.route('/concertNews')
   .get(concertNewsController.index)
-  .post(concertNewsController.post);
+  .post(authController.authorization, concertNewsController.post);
 
 routes.route('/concertNews/new')
-  .get(concertNewsController.new);
+  .get(authController.authorization, concertNewsController.new);
 
 
 routes.route('/concertNews/:id')
   .get(concertNewsController.id)
-  .put(concertNewsController.put)
-  .delete(concertNewsController.delete);
+  .put(authController.authorization, concertNewsController.put)
+  .delete(authController.authorization, concertNewsController.delete);
 
 
 routes.route('/concertNews/:id/edit')
-  .get(concertNewsController.edit);
+  .get(authController.authorization, concertNewsController.edit);
 
 
 module.exports = routes;

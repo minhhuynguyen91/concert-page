@@ -1,17 +1,25 @@
-const jwt = require('express-jwt');
+const jwt = require("jsonwebtoken");
 const mongoose = require('mongoose');
-
 var User = mongoose.model('User');
+const config = require('../../config/web/server');
 
-exports.requireLogin = function(req, res, next) {
-  if (req.session && req.session.userId) {
-    return next();
-  } else {
-    var err = new Error('You must be logged in to view this page.');
-    err.status = 401;
-    return next(err);
+exports.authorization = function(req, res, next) {
+  //get the token from the header if present
+  const token = req.session.accessToken;
+  //if no token found, return response (without going to the next middelware)
+  if (!token) return res.status(401).send("Access denied. No token provided.");
+
+  try {
+    //if can verify the token, set req.user and pass to next middleware
+    const decoded = jwt.verify(token, config.myprivatekey);
+    req.user = decoded;
+    next();
+  } catch (ex) {
+    //if invalid token
+    res.status(400).send("Invalid token.");
   }
 };
+
 
 exports.post = function(req, res) {
   
@@ -22,7 +30,10 @@ exports.post = function(req, res) {
       return res.render('authenticate/login');
     
     } else {
+      const token = user.generateAuthToken();
       req.session.userId = user._id;
+      req.session.accessToken = token;
+      
       return res.redirect('/') ;
     }
   });

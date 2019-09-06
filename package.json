@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/minhhuynguyen91/concert-page#readme",
   "dependencies": {
+    "@hapi/joi": "^15.1.1",
     "bcrypt": "^3.0.6",
     "bootstrap": "^4.3.1",
     "cookie-parser": "^1.4.4",
