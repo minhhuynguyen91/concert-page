@@ -10,13 +10,13 @@ const ConcertNews = mongoose.model('ConcertNews');
 exports.index = function(req, res) {
   Concert.find().sort({'displayOrder': 1})
     .then((concerts) => {
-      Referral.find().sort({'displayOrder': 1})
+      Referral.find().sort({'displayOrder': 1, '_id': -1})
         .then((referrals) => {
-          ConcertNews.find().sort({'displayOrder' : 1})
+          ConcertNews.find().sort({'displayOrder' : 1, '_id' : -1})
             .then((concertNewsIndex) => {
               Artist.find().sort({'displayOrder': 1})
                 .then((artists) => {
-                  ReferralVideo.find().sort({'srcType' : 1})
+                  ReferralVideo.find().sort({'_id': -1})
                     .then((referralVideos) => {
                       CommencedDate.aggregate([
                       {
