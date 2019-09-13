@@ -1,10 +1,15 @@
+.logo-large-screen.text-center.pb-1
+  img(src='/stylesheet/image/logo.jpg', width='50', height='50', alt='Logo')
+
 nav.navbar.navbar-expand-lg.navbar-light.navbar-custom
   .d-flex.order-0
     button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false'  aria-label='Toggle navigation')
       span.navbar-toggler-icon
-    
+  
+  
   a.navbar-brand.mx-auto.d-block.text-center.order-0.order-md-1.w-25(href='/')
-    img(src='/stylesheet/image/logo.jpg', width='50', height='50', alt='Logo')
+    .logo-small-screen
+      img(src='/stylesheet/image/logo.jpg', width='50', height='50', alt='Logo')
 
   #navbarSupportedContent.collapse.navbar-collapse
     ul.navbar-nav.ml-auto
@@ -50,3 +55,4 @@ nav.navbar.navbar-expand-lg.navbar-light.navbar-custom
         li.nav-item
           a.nav-link(href='/login') Đăng nhập
 
+.spacing.pb-1

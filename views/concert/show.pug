@@ -14,11 +14,14 @@ block content
         .concert-note.pt-2 
           | Thể loại: #{concert.note}
           
-        .concert-note.pt-2 
-          | Xuất Diễn :
-        ul
-        each detail in concert.commenceddatesDetails
-          li #{detail.start_time}  - #{moment(detail.start_date).format('DD/MM/YYYY')}
+        .concert-note.pt-2
+          if concert.commenceddatesDetails.length == 0
+            | Xuất diễn: HIỆN TẠI CHƯA CÓ XUẤT DIỄN 
+          else
+            | Xuất Diễn :
+            ul
+            each detail in concert.commenceddatesDetails
+              li #{detail.start_time}  - #{moment(detail.start_date).format('DD/MM/YYYY')}
 
 
       br
@@ -53,13 +56,12 @@ block content
             .row
               .col-lg-2.col-sm-2
               .col-lg-8.col-sm-8
-                .card.mt-4.border-2.text-center
-                  img.card-img-top.mx-auto.d-block.concert-relative-img(src=relatedConcert.img_link)
-
-                  .card-body.text-center
-                    .concert-title-card-display
-                      .card-title 
-                        a(href="/concerts/" + relatedConcert._id) #{relatedConcert.title}
+                .card.mt-4.border-0.text-center
+                  a(href="/concerts/" + relatedConcert._id)
+                    img.card-img-top.mx-auto.d-block.concert-relative-img(src=relatedConcert.img_link)
+                    .card-body.text-center
+                      .concert-title-card-display
+                        .card-title= relatedConcert.title
               .col-lg-2.col-sm-2
         
       a.carousel-control-prev.btn-floating.light-blue.darken-4(href='#carouselRelatedConcert', role='button', data-slide='prev')
