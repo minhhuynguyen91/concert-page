@@ -14,9 +14,8 @@ block content
                 if (referralVideo.srcType == "Youtube")
                   iframe.lazy(width="500" height="315" data-src=referralVideo.url allowfullscreen)
                 else
-                  // .fb-video(data-href=referralVideo.url data-width='500' data-height='315' data-show-text='false' data-allowfullscreen='true')
-                  iframe.lazy(src="https://www.facebook.com/plugins/video.php?href=" + referralVideo.url + "%2F&width=500&show_text=false&appId=369648133723010&height=315" width="500" height="315" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" allowFullScreen="true")
-
+                  .fb-video(data-href=referralVideo.url data-width='500' data-height='315' data-show-text='false' data-allowfullscreen='true')
+                  
               if session.userId
                 .card-text.pb-2
                   a.btn.btn-primary(href="/referralVideos/" + referralVideo._id + '/edit') Edit
