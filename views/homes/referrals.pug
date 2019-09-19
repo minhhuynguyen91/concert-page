@@ -21,7 +21,9 @@
                     .col-lg-2.col-sm-2
                     .col-lg-4.col-sm-4
                       .card.mt-4.border-2
-                        img.rounded.text-center.referral-image-thumbnail(src=data.thumbnail_image_url)
+                        picture
+                          source(data-srcset=data.thumbnail_image_url type="image/webp")
+                          img.rounded.text-center.referral-image-thumbnail.lazy(src=data.thumbnail_image_url)
                         .card-body
                           .card-text.text-center.referralNews-title
                             a(href=data.url) #{data.title}
@@ -29,7 +31,9 @@
                   if ((j - index) == 1)
                     .col-lg-4.col-sm-4
                       .card.mt-4.border-2
-                        img.rounded.text-center.referral-image-thumbnail(src=data.thumbnail_image_url)
+                        picture
+                          source(data-srcset=data.thumbnail_image_url type="image/webp")
+                          img.rounded.text-center.referral-image-thumbnail.lazy(src=data.thumbnail_image_url)
                         .card-body
                           .card-text.text-center.referralNews-title
                             a(href=data.url) #{data.title}                  

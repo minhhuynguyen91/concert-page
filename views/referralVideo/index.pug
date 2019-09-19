@@ -12,9 +12,10 @@ block content
 
               .card-text.pt-2
                 if (referralVideo.srcType == "Youtube")
-                  iframe(width="500" height="315" src=referralVideo.url allowfullscreen)
+                  iframe.lazy(width="500" height="315" data-src=referralVideo.url allowfullscreen)
                 else
-                  .fb-video(data-href=referralVideo.url data-width='500' data-height='315' data-show-text='false' data-allowfullscreen='true')
+                  // .fb-video(data-href=referralVideo.url data-width='500' data-height='315' data-show-text='false' data-allowfullscreen='true')
+                  iframe.lazy(src="https://www.facebook.com/plugins/video.php?href=" + referralVideo.url + "%2F&width=500&show_text=false&appId=369648133723010&height=315" width="500" height="315" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" allowFullScreen="true")
 
               if session.userId
                 .card-text.pb-2
@@ -22,3 +23,8 @@ block content
 
                 form(action="/referralVideos/" + referralVideo._id + "?_method=delete" method="POST")
                   button.btn.btn-danger.pt-2(type="submit" value="Submit" onclick="return confirm('Are you sure to delete?')") Delete
+
+  script.
+    var ll = new LazyLoad({
+      elements_selector: ".lazy"
+    })

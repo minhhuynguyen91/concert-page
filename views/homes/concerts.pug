@@ -17,7 +17,9 @@
             .col-sm-8.col-lg-8
               .card.mt-4.border-0.text-center
                 a(href="/concerts/" + concert._id)
-                  img.card-img-top.concert-img-card-display(src=concert.img_link)
+                  picture
+                    source(data-srcset=concert.img_link type="image/webp")
+                    img.card-img-top.concert-img-card-display.lazy(src=concert.img_link)
                     
                 .card-body.text-center
                   .concert-title-card-display

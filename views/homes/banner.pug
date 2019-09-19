@@ -4,4 +4,7 @@
   marquee(behavior="scroll" scrollamount="18" onmouseover="this.stop();" onmouseout="this.start();") 
     each concert in concerts
       a(href="/concerts/" + concert._id)
-        img.concert-marquee-image.img-fluid(src=concert.img_link)
+        picture
+          source(data-srcset=concert.img_link type="image/webp")
+
+          img.concert-marquee-image.img-fluid.lazy(src=concert.img_link)
