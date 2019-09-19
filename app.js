@@ -10,7 +10,6 @@ var cookieParser = require('cookie-parser');
 const session = require('express-session');
 const redis_client = require('./config/web/redis')
 
-
 app.locals.redis_client = redis_client;
 
 app.set('views', path.join(__dirname + '/views'));
@@ -23,13 +22,20 @@ app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist')
 app.use('/moment', express.static(__dirname + '/node_modules/moment'));
 app.use('/tempusdominus', express.static(__dirname + '/node_modules/tempusdominus-bootstrap-4/build'));
 app.use('/simplemde', express.static(__dirname + '/node_modules/simplemde/dist'));
-app.use('/fontawesome', express.static(__dirname + '/node_modules/\@fortawesome/fontawesome-free'));
+
+app.use('/lazyload', express.static(__dirname + '/node_modules/vanilla-lazyload/dist/'));
+
 
 app.use(express.static(__dirname, { dotfiles: 'allow' } ));
 
 
 // Stylesheet
-app.use(express.static(path.join(__dirname, '/public')));
+const publicPath = path.join(__dirname, '/public');
+app.use(express.static(publicPath,
+  {
+    maxAge: '72h'
+  }
+));
 
 app.use(methodOverride('_method'));
 app.use(bodyParser.json());
