@@ -6,7 +6,7 @@
           .artist-image
             picture
               source(data-srcset=artist.profile_img_link type="image/webp")
-              img.card-img-top.rounded-circle.artist-thumbnail-avatar.lazy(src=artist.profile_img_link)
+              img.card-img-top.rounded-circle.artist-thumbnail-avatar.lazy(data-src=artist.profile_img_link)
           .card-body
             .artist-name= artist.name
             .artist-details

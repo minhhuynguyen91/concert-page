@@ -1,5 +1,5 @@
 .container
-  img.img-fluid.image-banner.pt-1(src="/stylesheet/image/banner_image.jpg")
+  img.img-fluid.image-banner.pt-1.lazy(data-src="/stylesheet/image/banner_image.jpg")
 
   marquee(behavior="scroll" scrollamount="18" onmouseover="this.stop();" onmouseout="this.start();") 
     each concert in concerts
@@ -7,4 +7,4 @@
         picture
           source(data-srcset=concert.img_link type="image/webp")
 
-          img.concert-marquee-image.img-fluid.lazy(src=concert.img_link)
+          img.concert-marquee-image.img-fluid.lazy(data-src=concert.img_link)

@@ -19,7 +19,7 @@
                 a(href="/concerts/" + concert._id)
                   picture
                     source(data-srcset=concert.img_link type="image/webp")
-                    img.card-img-top.concert-img-card-display.lazy(src=concert.img_link)
+                    img.card-img-top.concert-img-card-display.lazy(data-src=concert.img_link)
                     
                 .card-body.text-center
                   .concert-title-card-display
