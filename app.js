@@ -37,6 +37,8 @@ app.use(express.static(publicPath,
   }
 ));
 
+app.use('/data', express.static(__dirname + '/public/data'));
+
 app.use(methodOverride('_method'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
