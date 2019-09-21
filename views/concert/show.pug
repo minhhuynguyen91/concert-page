@@ -9,6 +9,10 @@ block content
 
       .col-lg-12.col-sm-12.pb-2
         h1.concert-title.text-center= concert.title
+        .text-center
+          .fb-share-button(data-href='/concerts/' + concert._id , data-layout='button', data-size='large')
+            a.fb-xfbml-parse-ignore(target='_blank', href='https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&src=sdkpreparse') Share
+
         .concert-ticket.pt-2 Số ghế: #{concert.tickets}
 
         .concert-note.pt-2 
@@ -70,3 +74,13 @@ block content
       a.carousel-control-next(href='#carouselRelatedConcert', role='button', data-slide='next')
         span.carousel-control-next-icon(aria-hidden='true')
         span.sr-only Next
+        
+  script.
+    var newMetaContent = 
+    {
+      'title' : "!{concert.title}",
+      'img_link' : "!{concert.img_link}"
+    };
+    
+    $('meta[property="og:title"]').attr('content', newMetaContent.title);
+    $('meta[property="og:image"]').attr('content', newMetaContent.img_link);
