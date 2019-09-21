@@ -9,10 +9,10 @@ html
     link(rel='canonical', href='https://www.nhahat5b.vn/')
 
     link(rel="shortcut icon" type="image/x-icon" href="/stylesheet/image/tab_favicon.ico")
-    meta(property='og:title', content='Nhà Hát 5b')
-    meta(property='og:image', content='https://i.imgur.com/J2FIZNR.png')
-    meta(property='og:description', content='Website chính thức của nhà hát 5b')
-    meta(property='og:url', content='https://www.nhahat5b.vn')
+    meta(property='og:title' content='Nhà Hát 5b')
+    meta(property='og:image' content='https://i.imgur.com/J2FIZNR.png')
+    meta(property='og:description' content='Website chính thức của nhà hát 5b')
+    meta(property='og:url' content='https://www.nhahat5b.vn')
     meta(property="fb:app_id" content="369648133723010")
 
 
@@ -41,6 +41,14 @@ html
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
     
+    // Global site tag (gtag.js) - Google Analytics
+    script(async='', src='https://www.googletagmanager.com/gtag/js?id=UA-148373553-1')
+    script.
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-148373553-1');
+
 
     include ../common/navbar
 
