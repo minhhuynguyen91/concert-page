@@ -10,6 +10,9 @@ const client = require('twilio')(accountSid, authToken);
 exports.post = function(req, res) {
   var contentBody = '';
   var contentBody = contentBody.concat("Thong tin dat ve\nVo dien: ", req.body.title + "\n", "Ten: ", req.body.name + "\n", "So ve: ", req.body.ticket+"\n","sdt: ", req.body.phone +"\n", "ma cho ngoi: ", req.body.seatCode + "\n" );
+  contentBody = contentBody.replace(/[^\x00-\x7F]/g, "");
+  //console.log(contentBody);
+  //res.jsonp({success : true});
   
   client.messages
     .create({
