@@ -14,7 +14,7 @@ var timelineController = require('./timeline');
 var commencedDateController = require('./commenced_date');
 var referralVideoController = require('./referral_video');
 var concertNewsController = require('./concertNews');
-
+var twilioController = require('./twilio_sms');
 
 routes.route('/')
   .get(homeController.index);
@@ -132,5 +132,8 @@ routes.route('/concertNews/:id')
 routes.route('/concertNews/:id/edit')
   .get(authController.authorization, concertNewsController.edit);
 
+
+routes.route('/sendSMS')
+  .post(twilioController.post);
 
 module.exports = routes;

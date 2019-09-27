@@ -1,0 +1,97 @@
+- var triggerModalFormId = "seatRegisterForm" + index;
+- var closeModalFormId = "closeModal" + index;
+
+form(action='/sendSMS' method='POST' id=triggerModalFormId)
+  .form-group
+    label(for="name") Tên
+    input.form-control(
+      type="text"
+      id="title"
+      name="title"
+      maxLength=20
+      required
+    )
+    small.form-text.text-muted#phoneHelpBlock Không cần đầy đủ họ tên.
+
+    
+  .form-group
+    label(for="phone") Số điện thoại
+    input.form-control(
+      type="text"
+      id="phone"
+      name="phone"
+      maxLength=20
+      required
+    )
+    small.form-text.text-muted#phoneHelpBlock Số điện thoại này sẽ được chúng tôi gọi lại khi xác nhận.
+    
+  .form-group
+    label(for="ticketQuantity") Số vé 
+    input.form-control(
+      type="number"
+      id="ticket"
+      name="ticket"
+      max=200
+      min=1
+      required
+    )
+  
+  .form-group
+    label(for="seatCode") Mã chỗ ngồi
+    input.form-control(
+      type="text"
+      id="ticket"
+      name="ticket"
+      required
+    )
+    small.form-text.text-muted#seatCodeHelpBlock Vui lòng tham khảo sơ đồ ghế ngồi bên dưới, ví dụ: C1-1 A1-1...
+    
+  
+  .form-group
+    label(for="seatImg") Sơ đồ ghế ngồi
+    - var seat_image_link = (commencedDate.concertDetail[0].seat_image_url != "") ? commencedDate.concertDetail[0].seat_image_url : "https://via.placeholder.com/700x500";
+    
+    // - console.log(commencedDate.concertDetail[0].seat_image_url);
+    picture
+      source(data-srcset=seat_image_link type="image/webp")
+      img.img-fluid.seat-concert-img.lazy(src=seat_image_link)
+  
+  button.btn.btn-primary(type="submit" value="Submit") Đăng Ký
+  button.btn.btn-secondary.ml-2(type="button" data-dismiss="modal") Đóng
+
+script.
+  var formId = "#"+"!{triggerModalFormId}";
+  $(formId).submit(function(e) {
+    e.preventDefault();
+    var form = $(this);
+    var url = form.attr('action');
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: form.serialize(),
+      success: function(data)
+      {
+        
+        if(data['success'])
+        {
+          Swal.fire({
+            type: 'success',
+            title: 'Thành Công!',
+            text: 'Chúng tôi đã nhận được thông tin từ phía quý khách'
+          })
+        }
+        else
+        {
+          Swal.fire({
+            type: 'error',
+            title: 'Thất bại!',
+            text: 'Vui lòng liên hệ với chúng tôi qua facebook page',
+            footer: '<a href="https://www.facebook.com/Nh%C3%A0-H%C3%A1t-K%E1%BB%8Bch-S%C3%A2n-Kh%E1%BA%A5u-Nh%E1%BB%8F-1848774105419685/?ref=aymt_homepage_panel&eid=ARAQMiPVkBh4SFeR_3a5XpCDrGBWPhPVsVMIzV_o-4TPXTP9w0LoSFvVIs7ZqW9jo0ZeUco14teSeeCn" target="_blank">Nhà hát 5b</a>'
+          })
+        }
+        
+        $("#" + "!{triggerModalData}").modal('hide');
+      }
+    });
+    
+  });

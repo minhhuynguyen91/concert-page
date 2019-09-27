@@ -27,7 +27,8 @@
               br
 
             if session.userId
-                a.btn.btn-primary.mb-2(href="/commencedDates/" + commencedDate._id + "/edit") Edit
-                form(action="/commencedDates/" + commencedDate._id + "?_method=delete"  method="POST")
-                    button.btn.btn-danger(type="submit" value="Submit" onclick="return confirm('Are you sure to delete?')" ) Delete
-            
+              a.btn.btn-primary.mb-2(href="/commencedDates/" + commencedDate._id + "/edit") Edit
+              form(action="/commencedDates/" + commencedDate._id + "?_method=delete"  method="POST")
+                  button.btn.btn-danger(type="submit" value="Submit" onclick="return confirm('Are you sure to delete?')" ) Delete
+            else
+              include ../modals_form/sms_form/modal_form

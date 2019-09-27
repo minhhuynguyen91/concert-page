@@ -24,7 +24,7 @@ app.use('/tempusdominus', express.static(__dirname + '/node_modules/tempusdominu
 app.use('/simplemde', express.static(__dirname + '/node_modules/simplemde/dist'));
 
 app.use('/lazyload', express.static(__dirname + '/node_modules/vanilla-lazyload/dist/'));
-
+app.use('/sweetalert2', express.static(__dirname + '/node_modules/sweetalert2/dist/'));
 
 app.use(express.static(__dirname, { dotfiles: 'allow' } ));
 
@@ -62,6 +62,7 @@ app.use('/timelines', routes);
 app.use('/commencedDates', routes);
 app.use('/referralVideos', routes);
 app.use('/concertNews', routes);
+app.use('/sendSMS', routes);
 
 app.locals.moment = require('moment');
 

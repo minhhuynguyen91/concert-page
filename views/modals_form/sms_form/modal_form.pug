@@ -1,0 +1,20 @@
+// Button trigger modal
+- var triggerModalData = "TriggerModal" + index;
+- var ariaLabel = "ariaLabel" + index
+// - console.log(triggerModalData);
+a.btn.btn-primary(href="#"+triggerModalData  data-toggle="modal") Mua vé
+
+// button.btn.btn-primary(type='button', data-toggle='modal', data-target=triggerModalData)
+ 
+// Modal
+//#exampleModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+div(class="modal fade" id=triggerModalData tabindex='-1', role='dialog', aria-labelledby=ariaLabel, aria-hidden='true')
+  .modal-dialog.modal-lg(role='document')
+    .modal-content
+      .modal-header
+        h5(id=ariaLabel class="modal-title")= commencedDate.concertDetail[0].title
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') &times;
+      .modal-body
+        include sms_form
+
