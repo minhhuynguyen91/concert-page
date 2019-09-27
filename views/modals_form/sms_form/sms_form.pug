@@ -3,11 +3,19 @@
 
 form(action='/sendSMS' method='POST' id=triggerModalFormId)
   .form-group
+    input.form-control(
+      type="hidden"
+      id="title"
+      name="title"
+      value=commencedDate.concertDetail[0].title
+    )
+    
+  .form-group
     label(for="name") Tên
     input.form-control(
       type="text"
-      id="title"
-      name="title"
+      id="name"
+      name="name"
       maxLength=20
       required
     )
@@ -40,8 +48,8 @@ form(action='/sendSMS' method='POST' id=triggerModalFormId)
     label(for="seatCode") Mã chỗ ngồi
     input.form-control(
       type="text"
-      id="ticket"
-      name="ticket"
+      id="seatCode"
+      name="seatCode"
       required
     )
     small.form-text.text-muted#seatCodeHelpBlock Vui lòng tham khảo sơ đồ ghế ngồi bên dưới, ví dụ: C1-1 A1-1...

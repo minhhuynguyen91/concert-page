@@ -8,18 +8,22 @@ const authToken = config.twilio_auth_token;
 const client = require('twilio')(accountSid, authToken);
 
 exports.post = function(req, res) {
-  console.log("Hello");
-  res.jsonp({error : true})
-  // client.messages
-  //   .create({
-  //      body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
-  //      from: '+1251290-8587',
-  //      to: '+84859456912'
-  //    })
-  //   .then(message => console.log(message.sid))
+  var contentBody = '';
+  var contentBody = contentBody.concat("Thong tin dat ve\nVo dien: ", req.body.title + "\n", "Ten: ", req.body.name + "\n", "So ve: ", req.body.ticket+"\n","sdt: ", req.body.phone +"\n", "ma cho ngoi: ", req.body.seatCode + "\n" );
+  
+  client.messages
+    .create({
+       body: contentBody,
+       from: '+1251290-8587',
+       to: '+84859456912'
+     })
+    .then(() => {
+      res.jsonp({success : true})
+    })
     
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
+    .catch((err) => {
+      console.log(err);
+      res.jsonp({error : true})
+    });
   
 };
