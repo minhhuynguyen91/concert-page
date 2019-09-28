@@ -19,7 +19,7 @@ form(action='/sendSMS' method='POST' id=triggerModalFormId)
       maxLength=20
       required
     )
-    small.form-text.text-muted#phoneHelpBlock Không cần đầy đủ họ tên.
+    small.form-text.text-muted#phoneHelpBlock Tên không dấu, không cần đầy đủ họ tên.
 
     
   .form-group
@@ -85,7 +85,7 @@ script.
           Swal.fire({
             type: 'success',
             title: 'Thành Công!',
-            text: 'Chúng tôi đã nhận được thông tin từ phía quý khách'
+            text: data['message']
           })
         }
         else
@@ -93,7 +93,7 @@ script.
           Swal.fire({
             type: 'error',
             title: 'Thất bại!',
-            text: 'Vui lòng liên hệ với chúng tôi qua facebook page',
+            text: data['message'],
             footer: '<a href="https://www.facebook.com/Nh%C3%A0-H%C3%A1t-K%E1%BB%8Bch-S%C3%A2n-Kh%E1%BA%A5u-Nh%E1%BB%8F-1848774105419685/?ref=aymt_homepage_panel&eid=ARAQMiPVkBh4SFeR_3a5XpCDrGBWPhPVsVMIzV_o-4TPXTP9w0LoSFvVIs7ZqW9jo0ZeUco14teSeeCn" target="_blank">Nhà hát 5b</a>'
           })
         }
