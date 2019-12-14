@@ -6,6 +6,8 @@
       - var divClass = null
 
       each concertNews, index in concertNewsIndex
+        - var thumbnailImg = concertNews.img_link.split(";").filter(String)[0];
+        
         if (index == 0)
           - divClass = "carousel-item active"
         else
@@ -19,6 +21,10 @@
                 .card-body
                   .card-title.text-center
                     a(href="/concertNews/" + concertNews._id)
+                      picture
+                        source(data-srcset=thumbnailImg type="image/webp")
+                        img.card-img-top.concertNewsThumbnail.lazy(data-src=thumbnailImg)
+
                       h3= concertNews.title
 
                     if session.userId

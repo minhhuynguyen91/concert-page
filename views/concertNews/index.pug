@@ -2,17 +2,28 @@ extends ../layouts/layout
 
 block content
   .container
-    h2.pt-2 Tin tức nhà hát
+    h2.pt-2 Tin Tức Nhà Hát
     
-    each concertNews in concertNewsIndex
-      .col-sm-12.col-lg-6
-        .card.mt-4
-          .card-body
-            .card-title.text-center
-              a(href="/concertNews/" + concertNews._id)
-                h3= concertNews.title
+    .row
+      each concertNews in concertNewsIndex
+        - var thumbnailImg = concertNews.img_link.split(";").filter(String)[0];
+        
+        .col-sm-12.col-lg-6
+          .card.mt-4.border-0
+            a(href="/concertNews/" + concertNews._id)
+              picture
+                source(data-srcset=thumbnailImg type="image/webp")
+                img.card-img-top.concertNewsThumbnail.lazy(data-src=thumbnailImg)
+              .card-body
+                .card-title.text-center                
+                  h3= concertNews.title 
 
-            if session.userId
-              a.btn.btn-primary(href="/concertNews/" + concertNews._id + "/edit") Edit
-              form(action="/concertNews/" + concertNews._id + "?_method=delete" method="post")
-                button.btn.btn-danger.mt-1(type="submit" value="Submit" onclick="return confirm('Are you sure to delete?')" ) Delete
+          if session.userId
+            a.btn.btn-primary(href="/concertNews/" + concertNews._id + "/edit") Edit
+            form(action="/concertNews/" + concertNews._id + "?_method=delete" method="post")
+              button.btn.btn-danger.mt-1(type="submit" value="Submit" onclick="return confirm('Are you sure to delete?')" ) Delete
+
+  script.
+    var ll = new LazyLoad({
+      elements_selector: ".lazy"
+    })

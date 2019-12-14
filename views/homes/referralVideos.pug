@@ -19,7 +19,7 @@
                 .card-body
                   .card-text.pt-2.text-center
                     if (referralVideo.srcType == "Youtube")
-                      iframe(width="500" height="315" src=referralVideo.url allowfullscreen)
+                      iframe(width="400" height="315" src=referralVideo.url allowfullscreen)
                     else
                       .fb-video(data-href=referralVideo.url data-width='500' data-height='315' data-show-text='false' data-allowfullscreen='true')
 

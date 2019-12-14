@@ -3,3 +3,9 @@
   height: 25vw;
   object-fit: contain;
 }
+
+.concertNewsThumbnail {
+  height: 25vw;
+  width: 100%;  
+  object-fit: contain;
+}
