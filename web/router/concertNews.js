@@ -28,7 +28,7 @@ exports.post = function(req, res) {
 }
 
 exports.index = function(req, res) {
-  ConcertNews.find().sort({'displayOrder': 1})
+  ConcertNews.find().sort({'displayOrder': 1, '_id': -1})
     .then((concertNewsIndex) => {
       res.render('concertNews/index', 
       {

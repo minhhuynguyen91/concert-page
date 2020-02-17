@@ -4,16 +4,24 @@ block content
   .container
     .row
       each referral in referrals
+        - var thumbnailImg = (referral.thumbnail_image_url != "") ? referral.thumbnail_image_url : "https://via.placeholder.com/700x500"
         .col-sm-12.col-lg-6
-          .card.mt-4
-            .card-body
-              .card-title
-                h3= referral.title
-              .card-text
-                a(href=referral.url) #{referral.url}
-              br
-              if session.userId
-                .card-text.pb-2
-                  a.btn.btn-primary(href="/referrals/" + referral._id + '/edit') Edit
-                form(action="/referrals/" + referral._id + "?_method=delete" method="POST")
-                  button.btn.btn-danger.pt-2(type="submit" value="Submit" onclick="return confirm('Are you sure to delete?')") Delete
+          .card.mt-4.border-0
+            a(href=referral.url)
+              picture
+                source(data-srcset=thumbnailImg type="image/webp")
+                img.card-img-top.concertNewsThumbnail.lazy(data-src=thumbnailImg)
+              .card-body
+                .card-title.text-center
+                  h3= referral.title
+                br
+                if session.userId
+                  .card-text.pb-2
+                    a.btn.btn-primary(href="/referrals/" + referral._id + '/edit') Edit
+                  form(action="/referrals/" + referral._id + "?_method=delete" method="POST")
+                    button.btn.btn-danger.pt-2(type="submit" value="Submit" onclick="return confirm('Are you sure to delete?')") Delete
+
+  script.
+    var ll = new LazyLoad({
+      elements_selector: ".lazy"
+    })
