@@ -1,33 +1,34 @@
-.container.py-5
-  .row.text-center.mb-5
-    .col-lg-8.mx-auto
-      h1.display-4(style="text-transform: uppercase;") Lịch Diễn
-      p.lead.mb-0 Thời gian bắt đầu - Ngày bắt đầu trình diễn
+section.timelines
+  .container.py-5
+    .row.text-center.mb-5
+      .col-lg-8.mx-auto
+        h1.display-4(style="text-transform: uppercase;") Lịch Diễn
+        p.lead.mb-0 Thời gian bắt đầu - Ngày bắt đầu trình diễn
 
 
-.container
-  .row
-    .col-lg-7.mx-auto
-      ul.timeline
-        each commencedDate, index in commencedDates
-          li.timeline-item.bg-black.rounded.ml-3.p-4.shadow
-            .timeline-arrow
+  .container
+    .row
+      .col-lg-7.mx-auto
+        ul.timeline
+          each commencedDate, index in commencedDates
+            li.timeline-item.bg-black.rounded.ml-3.p-4.shadow
+              .timeline-arrow
 
-            h2.h5.mb-0.timelines-title 
-              a(href="/concerts/" + commencedDate.concertDetail[0]._id) #{commencedDate.concertDetail[0].title}
+              h2.h5.mb-0.timelines-title 
+                a(href="/concerts/" + commencedDate.concertDetail[0]._id) #{commencedDate.concertDetail[0].title}
 
-            span.small.text-gray
-              i.fa.fa-clock.mr-1
-                | #{commencedDate.start_time} - #{moment(commencedDate.start_date).format('DD/MM/YYYY')}
+              span.small.text-gray
+                i.fa.fa-clock.mr-1
+                  | #{commencedDate.start_time} - #{moment(commencedDate.start_date).format('DD/MM/YYYY')}
 
-            p.text-small.mt-2.font-weight-light
-              | Số vé : #{commencedDate.concertDetail[0].tickets}
-              br
-              | Thể loại: #{commencedDate.concertDetail[0].note}
-              br
+              p.text-small.mt-2.font-weight-light
+                | Số vé : #{commencedDate.concertDetail[0].tickets}
+                br
+                | Thể loại: #{commencedDate.concertDetail[0].note}
+                br
 
-            if session.userId
-                a.btn.btn-primary.mb-2(href="/commencedDates/" + commencedDate._id + "/edit") Edit
-                form(action="/commencedDates/" + commencedDate._id + "?_method=delete"  method="POST")
-                    button.btn.btn-danger(type="submit" value="Submit" onclick="return confirm('Are you sure to delete?')" ) Delete
-            
+              if session.userId
+                  a.btn.btn-primary.mb-2(href="/commencedDates/" + commencedDate._id + "/edit") Edit
+                  form(action="/commencedDates/" + commencedDate._id + "?_method=delete"  method="POST")
+                      button.btn.btn-danger(type="submit" value="Submit" onclick="return confirm('Are you sure to delete?')" ) Delete
+              

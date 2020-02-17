@@ -1,34 +1,35 @@
-.container
-  section.text-center.my-5
-    h2.h1-responsive.font-weight-bold.my-5(style="text-transform: uppercase;") Vở diễn sắp trình diễn 
+section.concerts
+  .container
+    section.text-center.my-5
+      h2.h1-responsive.font-weight-bold.my-5(style="text-transform: uppercase;") Vở diễn sắp trình diễn 
 
-  #carouselConcerts.carousel.slide(data-ride='carousel')
-    .carousel-inner(role="listbox")
-      - var divClass = null
-      each concert, index in concerts
-        if (index == 0)
-          - divClass = "carousel-item active"
-        else
-          - divClass = "carousel-item"
+    #carouselConcerts.carousel.slide(data-ride='carousel')
+      .carousel-inner(role="listbox")
+        - var divClass = null
+        each concert, index in concerts
+          if (index == 0)
+            - divClass = "carousel-item active"
+          else
+            - divClass = "carousel-item"
 
-        div(class=divClass)
-          .row
-            .col-sm-2.col-lg-2  
-            .col-sm-8.col-lg-8
-              .card.mt-4.border-0.text-center
-                .card-body.text-center
-                  a(href="/concerts/" + concert._id)
-                    picture
-                      source(data-srcset=concert.img_link type="image/webp")
-                      img.card-img-top.concert-img-card-display.lazy(data-src=concert.img_link)
+          div(class=divClass)
+            .row
+              .col-sm-2.col-lg-2  
+              .col-sm-8.col-lg-8
+                .card.mt-4.border-0.text-center
+                  .card-body.text-center
+                    a(href="/concerts/" + concert._id)
+                      picture
+                        source(data-srcset=concert.img_link type="image/webp")
+                        img.card-img-top.concert-img-card-display.lazy(data-src=concert.img_link)
 
-                      .concert-title-card-display
-                        .card-title.concert-title= concert.title
-                
-            .col-sm-8.col-lg-8
-    a.carousel-control-prev.btn-floating.light-blue.darken-4(href='#carouselConcerts', role='button', data-slide='prev')
-      span.carousel-control-prev-icon(aria-hidden='true')
-      span.sr-only Previous
-    a.carousel-control-next(href='#carouselConcerts', role='button', data-slide='next')
-      span.carousel-control-next-icon(aria-hidden='true')
-      span.sr-only Next
+                        .concert-title-card-display
+                          .card-title.concert-title= concert.title
+                  
+              .col-sm-8.col-lg-8
+      a.carousel-control-prev.btn-floating.light-blue.darken-4(href='#carouselConcerts', role='button', data-slide='prev')
+        span.carousel-control-prev-icon(aria-hidden='true')
+        span.sr-only Previous
+      a.carousel-control-next(href='#carouselConcerts', role='button', data-slide='next')
+        span.carousel-control-next-icon(aria-hidden='true')
+        span.sr-only Next

@@ -125,6 +125,7 @@ and (min-width : 1224px) {
   .logo-small-screen {
     display: none;
   }
+x         1`xz
 }
  
 /* Large screens ----------- */
@@ -158,3 +159,5 @@ and (max-device-width : 568px)
 and (orientation : portrait) {
 /* STYLES GO HERE */
 }
+
+

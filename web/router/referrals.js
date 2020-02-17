@@ -27,7 +27,7 @@ exports.new = function(req, res) {
 };
 
 exports.index = function(req, res) {
-  Referral.find()
+  Referral.find().sort({'displayOrder': 1, '_id': -1})
     .then((referrals) => {
       res.render('referrals/referrals', {referrals, session : req.session});
     })

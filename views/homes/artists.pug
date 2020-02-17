@@ -1,19 +1,20 @@
-.container
-  .row
-    each artist in artists
-      .col-sm-6.col-lg-4
-        .card.mt-4.border-0
-          .artist-image
-            picture
-              source(data-srcset=artist.profile_img_link type="image/webp")
-              img.card-img-top.rounded-circle.artist-thumbnail-avatar.lazy(data-src=artist.profile_img_link)
-          .card-body
-            .artist-name= artist.name
-            .artist-details
-              a.btn.btn-primary(href="/artists/" + artist._id) Xem
+section.artists
+  .container
+    .row
+      each artist in artists
+        .col-sm-6.col-lg-4
+          .card.mt-4.border-0
+            .artist-image
+              picture
+                source(data-srcset=artist.profile_img_link type="image/webp")
+                img.card-img-top.rounded-circle.artist-thumbnail-avatar.lazy(data-src=artist.profile_img_link)
+            .card-body
+              .artist-name= artist.name
+              .artist-details
+                a.btn.btn-primary(href="/artists/" + artist._id) Xem
 
-            .artist-details.mt-1  
-              if session.userId
-                a.btn.btn-primary(href="/artists/" + artist._id + "/edit") Edit
-                form(action="/artists/" + artist._id + "?_method=delete" method="post")
-                  button.btn.btn-danger.mt-1(type="submit" value="Submit" onclick="return confirm('Are you sure to delete?')" ) Delete
+              .artist-details.mt-1  
+                if session.userId
+                  a.btn.btn-primary(href="/artists/" + artist._id + "/edit") Edit
+                  form(action="/artists/" + artist._id + "?_method=delete" method="post")
+                    button.btn.btn-danger.mt-1(type="submit" value="Submit" onclick="return confirm('Are you sure to delete?')" ) Delete

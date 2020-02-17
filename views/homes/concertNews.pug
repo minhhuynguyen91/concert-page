@@ -1,42 +1,43 @@
-.container.pt-4.mb-4
-  h2.text-center.pt-4.pb-3(style="text-transform: uppercase;") Tin tức nhà hát
+section.concertNews
+  .container.pt-4.mb-4
+    h2.text-center.pt-4.pb-3(style="text-transform: uppercase;") Tin tức nhà hát
 
-  #carouselConcertNews.carousel.slide(data-ride='carousel' data-interval="false")
-    .carousel-inner(role="listbox")
-      - var divClass = null
+    #carouselConcertNews.carousel.slide(data-ride='carousel' data-interval="false")
+      .carousel-inner(role="listbox")
+        - var divClass = null
 
-      each concertNews, index in concertNewsIndex
-        - var thumbnailImg = concertNews.img_link.split(";").filter(String)[0];
-        
-        if (index == 0)
-          - divClass = "carousel-item active"
-        else
-          - divClass = "carousel-item"
-    
-        div(class=divClass)
-          .row
-            .col-sm-3.col-lg-3
-            .col-sm-6.col-lg-6
-              .card.mt-4
-                .card-body
-                  .card-title.text-center
-                    a(href="/concertNews/" + concertNews._id)
-                      picture
-                        source(data-srcset=thumbnailImg type="image/webp")
-                        img.card-img-top.concertNewsThumbnail.lazy(data-src=thumbnailImg)
+        each concertNews, index in concertNewsIndex
+          - var thumbnailImg = concertNews.img_link.split(";").filter(String)[0];
+          
+          if (index == 0)
+            - divClass = "carousel-item active"
+          else
+            - divClass = "carousel-item"
+      
+          div(class=divClass)
+            .row
+              .col-sm-3.col-lg-3
+              .col-sm-6.col-lg-6
+                .card.mt-4
+                  .card-body
+                    .card-title.text-center
+                      a(href="/concertNews/" + concertNews._id)
+                        picture
+                          source(data-srcset=thumbnailImg type="image/webp")
+                          img.card-img-top.concertNewsThumbnail.lazy(data-src=thumbnailImg)
 
-                      h3= concertNews.title
+                        h3= concertNews.title
 
-                    if session.userId
-                      a.btn.btn-primary(href="/concertNews/" + concertNews._id + "/edit") Edit
-                      form(action="/concertNews/" + concertNews._id + "?_method=delete" method="post")
-                        button.btn.btn-danger.mt-1(type="submit" value="Submit" onclick="return confirm('Are you sure to delete?')" ) Delete
-            .col-sm-3.col-lg-3
-    
-    
-    a.carousel-control-prev.btn-floating.light-blue.darken-4(href='#carouselConcertNews', role='button', data-slide='prev')
-      span.carousel-control-prev-icon(aria-hidden='true')
-      span.sr-only Previous
-    a.carousel-control-next(href='#carouselConcertNews', role='button', data-slide='next')
-      span.carousel-control-next-icon(aria-hidden='true')
-      span.sr-only Next
+                      if session.userId
+                        a.btn.btn-primary(href="/concertNews/" + concertNews._id + "/edit") Edit
+                        form(action="/concertNews/" + concertNews._id + "?_method=delete" method="post")
+                          button.btn.btn-danger.mt-1(type="submit" value="Submit" onclick="return confirm('Are you sure to delete?')" ) Delete
+              .col-sm-3.col-lg-3
+      
+      
+      a.carousel-control-prev.btn-floating.light-blue.darken-4(href='#carouselConcertNews', role='button', data-slide='prev')
+        span.carousel-control-prev-icon(aria-hidden='true')
+        span.sr-only Previous
+      a.carousel-control-next(href='#carouselConcertNews', role='button', data-slide='next')
+        span.carousel-control-next-icon(aria-hidden='true')
+        span.sr-only Next
