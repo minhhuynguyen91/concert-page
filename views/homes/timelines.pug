@@ -5,21 +5,22 @@ section.timelines
         h1.display-4(style="text-transform: uppercase;") Lịch Diễn
         p.lead.mb-0 Thời gian bắt đầu - Ngày bắt đầu trình diễn
 
-
+  - moment.locale('vi')
   .container
     .row
       .col-lg-7.mx-auto
         ul.timeline
           each commencedDate, index in commencedDates
+            - var weekDayName = moment(commencedDate.start_date).format('dddd')
+
             li.timeline-item.bg-black.rounded.ml-3.p-4.shadow
               .timeline-arrow
 
               h2.h5.mb-0.timelines-title 
                 a(href="/concerts/" + commencedDate.concertDetail[0]._id) #{commencedDate.concertDetail[0].title}
 
-              span.small.text-gray
-                i.fa.fa-clock.mr-1
-                  | #{commencedDate.start_time} - #{moment(commencedDate.start_date).format('DD/MM/YYYY')}
+              span.small.text-gray(style="text-transform: capitalize;")
+                | #{commencedDate.start_time} - #{moment(commencedDate.start_date).format('DD/MM/YYYY')} (#{weekDayName})
 
               p.text-small.mt-2.font-weight-light
                 | Số vé : #{commencedDate.concertDetail[0].tickets}
