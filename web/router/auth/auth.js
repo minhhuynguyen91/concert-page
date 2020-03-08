@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const mongoose = require('mongoose');
 var User = mongoose.model('User');
-const config = require('../../config/web/server');
+const config = require('../../../config/web/server');
 
 exports.authorization = function(req, res, next) {
   //get the token from the header if present

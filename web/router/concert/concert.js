@@ -152,3 +152,25 @@ exports.delete = function(req, res) {
   })
     .catch((err) => {console.log(err.stack); });
 };
+
+
+exports.getIndex = function (req, res) {
+  Concert.find()
+    .then((concerts) => {
+      res.status(200).json({success: true, data: concerts})
+    })
+    .catch((err) => {
+      res.status(400).json({success: false, err: err})
+    })
+};
+
+exports.getId = function (req, res) {
+  const objectId = new mongo.ObjectId(req.params.id);
+  Concert.findOne({'_id' : objectId})
+    .then((concert) => {
+      res.status(200).json({success: true, data: concert})
+    })
+    .catch((err) => {
+      res.status(400).json({success: false, err: err})
+    })
+};

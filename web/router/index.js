@@ -3,17 +3,17 @@ const express = require('express');
 const routes = express.Router();
 
 
-var homeController = require('./home');
-var concertController = require('./concert');
+var homeController = require('./home/home');
+var concertController = require('./concert/concert');
 
-var authController = require('./auth');
-var userController = require('./user'); 
-var refController = require('./referrals');
-var artistController = require('./artist');
-var timelineController = require('./timeline');
-var commencedDateController = require('./commenced_date');
-var referralVideoController = require('./referral_video');
-var concertNewsController = require('./concertNews');
+var authController = require('./auth/auth');
+var userController = require('./user/user'); 
+var refController = require('./referrals/referrals');
+var artistController = require('./artist/artist');
+var timelineController = require('./timeline/timeline');
+var commencedDateController = require('./commenced_date/commenced_date');
+var referralVideoController = require('./referral_video/referral_video');
+var concertNewsController = require('./concertNews/concertNews');
 
 
 routes.route('/')
@@ -131,6 +131,16 @@ routes.route('/concertNews/:id')
 
 routes.route('/concertNews/:id/edit')
   .get(authController.authorization, concertNewsController.edit);
+
+
+
+
+// api routing
+routes.route('/api/v1/concerts/index')
+  .get(concertController.getIndex);
+
+routes.route('/api/v1/concerts/:id')
+  .get(concertController.getId);
 
 
 module.exports = routes;
