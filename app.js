@@ -1,5 +1,6 @@
 const config = require('./config/web/server');
 const express = require('express');
+var cors = require('cors');
 const app = express();
 const routes = require('./web/router/index');
 const bodyParser = require('body-parser');
@@ -9,6 +10,8 @@ var methodOverride = require('method-override');
 var cookieParser = require('cookie-parser');
 const session = require('express-session');
 // const redis_client = require('./config/web/redis')
+
+app.use(cors());
 
 // app.locals.redis_client = redis_client;
 
@@ -63,7 +66,7 @@ app.use('/commencedDates', routes);
 app.use('/referralVideos', routes);
 app.use('/concertNews', routes);
 
-app.use('/api', routes);
+app.use('/api/v1', routes);
 
 app.locals.moment = require('moment');
 
