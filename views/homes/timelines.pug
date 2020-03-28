@@ -7,29 +7,33 @@ section.timelines
 
   - moment.locale('vi')
   .container
-    .row
-      .col-lg-7.mx-auto
-        ul.timeline
-          each commencedDate, index in commencedDates
-            - var weekDayName = moment(commencedDate.start_date).format('dddd')
+    if commencedDates.length != 0
+      .row
+        .col-lg-7.mx-auto
+          ul.timeline
+            each commencedDate, index in commencedDates
+              - var weekDayName = moment(commencedDate.start_date).format('dddd')
 
-            li.timeline-item.bg-black.rounded.ml-3.p-4.shadow
-              .timeline-arrow
+              li.timeline-item.bg-black.rounded.ml-3.p-4.shadow
+                .timeline-arrow
 
-              h2.h5.mb-0.timelines-title 
-                a(href="/concerts/" + commencedDate.concertDetail[0]._id) #{commencedDate.concertDetail[0].title}
+                h2.h5.mb-0.timelines-title 
+                  a(href="/concerts/" + commencedDate.concertDetail[0]._id) #{commencedDate.concertDetail[0].title}
 
-              span.small.text-gray(style="text-transform: capitalize;")
-                | #{commencedDate.start_time} - #{moment(commencedDate.start_date).format('DD/MM/YYYY')} (#{weekDayName})
+                span.small.text-gray(style="text-transform: capitalize;")
+                  | #{commencedDate.start_time} - #{moment(commencedDate.start_date).format('DD/MM/YYYY')} (#{weekDayName})
 
-              p.text-small.mt-2.font-weight-light
-                | Số vé : #{commencedDate.concertDetail[0].tickets}
-                br
-                | Thể loại: #{commencedDate.concertDetail[0].note}
-                br
+                p.text-small.mt-2.font-weight-light
+                  | Số vé : #{commencedDate.concertDetail[0].tickets}
+                  br
+                  | Thể loại: #{commencedDate.concertDetail[0].note}
+                  br
 
-              if session.userId
-                  a.btn.btn-primary.mb-2(href="/commencedDates/" + commencedDate._id + "/edit") Edit
-                  form(action="/commencedDates/" + commencedDate._id + "?_method=delete"  method="POST")
-                      button.btn.btn-danger(type="submit" value="Submit" onclick="return confirm('Are you sure to delete?')" ) Delete
-              
+                if session.userId
+                    a.btn.btn-primary.mb-2(href="/commencedDates/" + commencedDate._id + "/edit") Edit
+                    form(action="/commencedDates/" + commencedDate._id + "?_method=delete"  method="POST")
+                        button.btn.btn-danger(type="submit" value="Submit" onclick="return confirm('Are you sure to delete?')" ) Delete
+    else
+      h2.text-center(style="white-space:pre-line;")
+        | Hiện tại chưa có lịch diễn
+        | Bạn có thể ghé thăm fanpage của chúng tôi trên <span> <a href="https://www.facebook.com/Nh%C3%A0-H%C3%A1t-K%E1%BB%8Bch-S%C3%A2n-Kh%E1%BA%A5u-Nh%E1%BB%8F-1848774105419685">facebook </a> </span>
