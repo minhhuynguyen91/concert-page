@@ -142,5 +142,8 @@ routes.route('/api/v1/concerts/index')
 routes.route('/api/v1/concerts/:id')
   .get(concertController.getId);
 
+routes.route('/api/v1/commencedDates/index')
+  .get(commencedDateController.getIndex);
+
 
 module.exports = routes;

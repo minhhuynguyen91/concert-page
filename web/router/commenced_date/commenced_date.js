@@ -236,3 +236,25 @@ exports.delete = function(req, res) {
   
   
 };
+
+
+exports.getIndex = function(req, res) {
+  CommencedDate.aggregate([
+    {
+      $lookup:
+      {
+        from: 'concerts',
+        localField: '_concertId',
+        foreignField: '_id',
+        as: 'concertDetail'
+      }
+    }
+  ]).sort({'start_date': 1})
+    .then((commencedDates) => {
+      res.status(200).json({success: true, data: commencedDates})
+    })
+
+    .catch((err) => {
+      res.status(400).json({success: false, err: err})
+    });
+}
