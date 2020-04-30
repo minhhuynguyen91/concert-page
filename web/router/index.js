@@ -139,11 +139,16 @@ routes.route('/concertNews/:id/edit')
 routes.route('/api/v1/concerts/index')
   .get(concertController.getIndex);
 
-routes.route('/api/v1/concerts/:id')
-  .get(concertController.getId);
-
 routes.route('/api/v1/commencedDates/index')
   .get(commencedDateController.getIndex);
 
+routes.route('/api/v1/concertNews/index')
+  .get(concertNewsController.getIndex);
+
+routes.route('/api/v1/concerts/:id')
+  .get(concertController.getId);
+
+routes.route('/api/v1/concertNews/:id')
+  .get(concertNewsController.getId);
 
 module.exports = routes;

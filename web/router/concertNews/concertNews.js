@@ -126,3 +126,28 @@ exports.delete = function(req, res) {
     })  
   
 }
+
+
+exports.getIndex = function(req, res) {
+  // ConcertNews.find().sort({'displayOrder': 1, '_id': -1})
+  ConcertNews.find().sort({'displayOrder': 1})
+    .then((concertNews) => {
+      res.status(200).json({success: true, data: concertNews})
+    })
+
+    .catch((err) => {
+      res.status(400).json({success: false, err: err})
+    });
+};
+
+exports.getId = function(req, res) {
+  const objectId = new mongo.ObjectId(req.params.id);
+  ConcertNews.findOne({'_id' : objectId})
+    .then((concertNews) => {
+      res.status(200).json({success: true, data: concertNews})
+    })
+
+    .catch((err) => {
+      res.status(400).json({success: false, err: err})
+    });
+};
