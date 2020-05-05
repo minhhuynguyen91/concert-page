@@ -113,3 +113,24 @@ exports.delete = function(req, res) {
     .then(() => {res.redirect('/artists');})
     .catch((err) => {console.log(err);});
 };
+
+exports.getAllArtist = function (req, res) {
+  Artist.find().sort({'displayOrder' : 1})
+    .then((artists) => {
+      res.status(200).json({success: true, data: artists})
+    })
+    .catch((err) => {
+      res.status(400).json({success: false, err: err})
+    });
+}
+
+exports.getArtistById = function (req, res) {
+  const objectId = new mongo.ObjectId(req.params.id);
+  Artist.findOne({'_id' : objectId })
+    .then((artist) => {
+      res.status(200).json({success: true, data: artist})
+    })
+    .catch((err) => {
+      res.status(400).json({success: false, err: err})
+    });
+}

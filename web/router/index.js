@@ -151,4 +151,11 @@ routes.route('/api/v1/concerts/:id')
 routes.route('/api/v1/concertNews/:id')
   .get(concertNewsController.getId);
 
+routes.route('/api/v1/artists/index')
+  .get(artistController.getAllArtist);
+
+routes.route('/api/v1/artists/:id')
+  .get(artistController.getArtistById);
+
+
 module.exports = routes;
