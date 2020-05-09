@@ -96,3 +96,14 @@ exports.delete = function(req, res) {
 
 exports.id = function(req, res) {
 }
+
+exports.getVideoIndex = function(req, res) {
+  ReferralVideo.find()
+    .then((referVideos) => {
+      res.status(200).json({success: true, data: referVideos})
+    })
+
+    .catch((err) => {
+      res.status(400).json({success: false, err: err})
+    })
+} 

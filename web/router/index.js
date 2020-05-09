@@ -145,6 +145,9 @@ routes.route('/api/v1/commencedDates/index')
 routes.route('/api/v1/concertNews/index')
   .get(concertNewsController.getIndex);
 
+routes.route('/api/v1/referralVideos/index')
+  .get(referralVideoController.getVideoIndex);
+
 routes.route('/api/v1/concerts/:id')
   .get(concertController.getId);
 
