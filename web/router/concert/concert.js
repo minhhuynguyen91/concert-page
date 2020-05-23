@@ -166,8 +166,15 @@ exports.getIndex = function (req, res) {
 
 exports.getId = function (req, res) {
   const objectId = new mongo.ObjectId(req.params.id);
-  Concert.findOne({'_id' : objectId})
-    .then((concert) => {
+  Concert.aggregate([
+    { $match : {_id : objectId} },
+    { $lookup: {
+      from: 'commenceddates',
+      localField: 'commencedDateIds',
+      foreignField: '_id',
+      as: 'commenceddatesDetails'
+    }}
+  ]).then((concert) => {
       res.status(200).json({success: true, data: concert})
     })
     .catch((err) => {
