@@ -160,5 +160,14 @@ routes.route('/api/v1/artists/index')
 routes.route('/api/v1/artists/:id')
   .get(artistController.getArtistById);
 
+routes.route('/api/v1/login')
+  .post(authController.postAuth);
 
+routes.route('/api/v1/logout')
+  .post(authController.postLogout);
+
+routes.route('/api/v1/session')
+  .get(authController.getSession);
+
+  
 module.exports = routes;
